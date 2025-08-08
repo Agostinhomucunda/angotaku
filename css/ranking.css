@@ -1,0 +1,298 @@
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Removendo o fixed do header na página de ranking */
+header {
+    position: relative !important;
+    top: auto !important;
+    z-index: 1000;
+}
+
+/* Conteúdo principal */
+.main-content {
+    position: relative;
+    margin-top: 20px;
+    min-height: calc(100vh - 100px);
+    z-index: 1;
+}
+
+.ranking-container {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.ranking-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2));
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.ranking-header h1 {
+    font-size: 2.2em;
+    margin: 0 0 10px 0;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.ranking-header .subtitle {
+    color: #aaa;
+    font-size: 1.1em;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.rankings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 20px;
+}
+
+.ranking-section {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ranking-section h2 {
+    color: #fff;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ranking-section h2 i {
+    color: #ffd700;
+}
+
+.ranking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ranking-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.ranking-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.position {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #ffd700;
+    min-width: 40px;
+    text-align: center;
+}
+
+.anime-cover {
+    width: 80px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.anime-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.anime-info {
+    flex-grow: 1;
+    min-width: 0;
+    max-width: calc(100% - 140px);
+    overflow: hidden;
+}
+
+.anime-info h3 {
+    font-size: 1.1em;
+    margin: 0 0 8px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+    max-height: 2.4em;
+    word-wrap: break-word;
+}
+
+.episode {
+    color: #aaa;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.views {
+    color: #888;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.views i {
+    color: #ffd700;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .ranking-container {
+        margin: 10px;
+    }
+}
+
+@media (max-width: 992px) {
+    .rankings-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 10px;
+    }
+
+    .ranking-header h1 {
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 768px) {
+    .ranking-container {
+        padding: 10px;
+    }
+
+    .ranking-header {
+        display: none; /* Oculta o header em celulares */
+    }
+
+    .ranking-section {
+        padding: 15px;
+    }
+
+    .ranking-item {
+        padding: 10px;
+    }
+
+    .anime-cover {
+        width: 60px;
+        height: 90px;
+    }
+
+    .position {
+        font-size: 1.2em;
+        min-width: 30px;
+    }
+
+    .anime-info {
+        max-width: calc(100% - 110px);
+    }
+
+    .anime-info h3 {
+        font-size: 1em;
+        line-height: 1.2;
+        -webkit-line-clamp: 2;
+        max-height: 2.4em;
+    }
+}
+
+@media (max-width: 480px) {
+    .ranking-header {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+
+    .ranking-header h1 {
+        font-size: 1.5em;
+        margin-bottom: 6px;
+    }
+
+    .ranking-header .subtitle {
+        font-size: 0.9em;
+    }
+
+    .ranking-section h2 {
+        font-size: 1.2em;
+    }
+
+    .anime-cover {
+        width: 50px;
+        height: 75px;
+    }
+
+    .position {
+        min-width: 25px;
+        font-size: 1em;
+    }
+
+    .anime-info {
+        max-width: calc(100% - 85px);
+    }
+
+    .anime-info h3 {
+        font-size: 0.9em;
+        margin-bottom: 4px;
+        -webkit-line-clamp: 2;
+        max-height: 2.4em;
+    }
+
+    .episode, .views {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 360px) {
+    .anime-info {
+        max-width: calc(100% - 80px);
+    }
+
+    .anime-info h3 {
+        font-size: 0.85em;
+        -webkit-line-clamp: 2;
+        max-height: 2.4em;
+    }
+
+    .episode, .views {
+        font-size: 0.75em;
+    }
+}

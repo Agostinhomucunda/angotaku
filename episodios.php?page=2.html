@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><br />
+<b>Warning</b>:  Undefined variable $pageTitle in <b>/var/www/html/episodios.php</b> on line <b>20</b><br />
+</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <style>
+        body {
+            background: linear-gradient(135deg, #18122B 0%, #231942 100%) fixed;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+        }
+        .stream-header {
+            width: 100%;
+            background: rgba(45, 18, 75, 0.92);
+            box-shadow: 0 2px 16px #000a;
+            padding: 18px 0 12px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .stream-header-title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 12px #9b59b6, 0 0 2px #000;
+            font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+            text-transform: uppercase;
+        }
+        .container {
+            background: rgba(26, 19, 37, 0.97);
+            border: none;
+            margin: 0 auto 40px auto;
+            padding: 32px 24px 40px 24px;
+            border-radius: 18px;
+            max-width: 1300px;
+            box-shadow: 0 0 40px 0 #9b59b6aa, 0 0 0 2px #9b59b6;
+        }
+        h2 {
+            text-align: center;
+            font-size: 2.1rem;
+            letter-spacing: 1px;
+            margin-bottom: 28px;
+            color: #9b59b6;
+            text-shadow: 1px 1px 8px #000;
+        }
+        .episode-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+        }
+        .episode-item {
+            background: #231942;
+            border: 2px solid #9b59b6;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px #0007;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.13s, box-shadow 0.13s;
+            min-width: 0;
+        }
+        .episode-item:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 6px 24px #9b59b6aa;
+        }
+        .episode-item img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-bottom: 1px solid #9b59b6;
+            background: #111;
+        }
+        .episode-info {
+            padding: 14px 10px 10px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .episode-title {
+            font-size: 1.08rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 4px;
+            text-shadow: 0 1px 4px #000a;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
+        }
+        .episode-number {
+            color: #9b59b6;
+            font-size: 0.97rem;
+            font-weight: 500;
+            margin-bottom: 1px;
+        }
+        .episode-item a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        @media (max-width: 900px) {
+            .container {
+                padding: 10px 2px;
+            }
+            .episode-item img {
+                height: 110px;
+            }
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 4px 0;
+                margin: 4px 0;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            .episode-item img {
+                height: 85px;
+            }
+            .episode-info {
+                padding: 8px 4px 6px 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stream-header"><span class="stream-header-title">AniStream</span></div>
+    <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Últimos Episódios</title>
+    <link rel="icon" type="image/png" href="includes/favicon.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset e variáveis */
+        :root {
+            --primary: #8A2BE2;
+            --primary-light: #9B4BFF;
+            --accent: #FF3E6C;
+            --text: #FFFFFF;
+            --text-secondary: rgba(255, 255, 255, 0.85);
+            --background: rgba(16, 16, 24, 0.95);
+            --nav-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilos base do header */
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: var(--nav-height);
+            padding: 0 2rem;
+            background: var(--background);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Efeito de borda gradiente animada */
+        .nav-container::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(
+                90deg,
+                var(--primary) 0%,
+                var(--accent) 50%,
+                var(--primary) 100%
+            );
+            background-size: 200% 100%;
+            animation: gradientBorder 3s linear infinite;
+        }
+
+        @keyframes gradientBorder {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
+
+        /* Grupos de navegação */
+        .left-group, .right-group {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        /* Responsividade dos links de navegação */
+        .nav-links {
+            display: flex;
+            gap: 1.1rem;
+            flex-wrap: wrap;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            max-width: 100vw;
+        }
+        .nav-links::-webkit-scrollbar {
+            display: none;
+        }
+        @media (max-width: 900px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+                height: auto;
+                padding: 0 0.5rem;
+            }
+            .left-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .nav-links {
+                width: 100%;
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 6px;
+                margin-bottom: 2px;
+            }
+            .right-group {
+                flex-direction: row;
+                width: 100%;
+                justify-content: flex-end;
+                margin-top: 8px;
+                gap: 1rem;
+            }
+        }
+        @media (max-width: 600px) {
+            :root {
+                --nav-height: 48px;
+            }
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+                height: auto;
+                padding: 0 0.1rem;
+            }
+            .left-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.22rem;
+            }
+            .nav-links {
+                width: 100vw;
+                gap: 0.45rem;
+                font-size: 0.89rem;
+                padding-bottom: 3px;
+            }
+            .right-group {
+                flex-direction: row;
+                width: 100%;
+                justify-content: flex-end;
+                margin-top: 4px;
+                gap: 0.5rem;
+            }
+            .search-toggle {
+                width: 32px;
+                height: 32px;
+                font-size: 1.05rem;
+                min-width: 32px;
+                min-height: 32px;
+                padding: 0 3px;
+            }
+            .search-bar input[type="text"] {
+                font-size: 0.97rem;
+                padding: 5px 7px;
+            }
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+        /* Links de navegação */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--text);
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.25);
+        }
+
+        .nav-link i {
+            font-size: 1.1rem;
+        }
+
+        /* Perfil do usuário */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .user-profile:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .user-profile .username {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        /* Botão de login */
+        .login-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border: none;
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.25);
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.3);
+            filter: brightness(1.1);
+        }
+
+        /* Busca */
+        .search-container {
+            position: relative;
+        }
+
+        .search-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .search-bar {
+            display: none;
+            position: absolute;
+            top: calc(100% + 1rem);
+            right: 0;
+            background: var(--background);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            width: 300px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            animation: slideDown 0.3s ease;
+        }
+
+        .search-bar.active {
+            display: block;
+        }
+
+        .search-bar input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            font-size: 0.95rem;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .user-profile .username {
+                display: none;
+            }
+
+            .user-profile {
+                padding: 0.4rem;
+            }
+
+            .user-profile .avatar {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: var(--background);
+                padding: 0.8rem;
+                justify-content: space-around;
+                box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-link {
+                flex-direction: column;
+                font-size: 0.8rem;
+                padding: 0.5rem;
+            }
+
+            .nav-link i {
+                font-size: 1.2rem;
+            }
+
+            .nav-link span {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+    <script src="assets/js/dev-blocker.js"></script>
+    <script>
+        // Desabilita tecla F12
+        document.onkeypress = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        // Desabilita clique direito
+        document.onmousedown = function (event) {
+            event = (event || window.event);
+            if (event.button == 2) {
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="telegram-notify" style="display:none;position:relative;">
+      <div style="background:linear-gradient(90deg,#9b59b6,#6c3483);color:#fff;padding:12px 18px 12px 40px;font-size:1rem;display:flex;align-items:center;justify-content:center;gap:18px;box-shadow:0 2px 18px #0003;z-index:2000;position:relative;">
+        <i class="fab fa-telegram-plane" style="font-size:1.5em;"></i>
+        <span>Entre em nosso canal no <b>Telegram</b> para novidades e avisos! <a href="https://t.me/otakuplayanimes" target="_blank" style="color:#fff;text-decoration:underline;font-weight:bold;">@otakuplayanimes</a></span>
+        <button id="close-tg-notify" style="background:none;border:none;color:#fff;font-size:1.4em;margin-left:18px;cursor:pointer;">&times;</button>
+      </div>
+    </div>
+    <header>
+        <div class="nav-container">
+            <div class="left-group">
+                <a href="index.html" class="logo">
+                    <span>AngoTaku</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link ">
+                        <i class="fas fa-home"></i>
+                        <span>Início</span>
+                    </a>
+                    <a href="lista.php.html" class="nav-link ">
+                        <i class="fas fa-list"></i>
+                        <span>Lista</span>
+                    </a>
+                    <a href="lista.php.html#search" class="nav-link search-nav-link">
+                        <i class="fas fa-search"></i>
+                        <span>Buscar</span>
+                    </a>
+                    <a href="episodios.php.html" class="nav-link active">
+                        <i class="fas fa-heart"></i>
+                        <span>Episódios</span>
+                    </a>
+                    <a href="ranking.php.html" class="nav-link ">
+                        <i class="fas fa-trophy"></i>
+                        <span>Ranking</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="right-group">
+                <div class="search-container">
+                    <button type="button" class="search-toggle">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <form action="lista.php.html" method="GET" class="search-bar">
+                        <input type="hidden" name="genre" value="">
+                        <input type="hidden" name="year" value="">
+                        <input type="hidden" name="dubbed" value="">
+                        <input type="text" name="search" placeholder="Buscar animes..." required>
+                    </form>
+                </div>
+
+                <div class="user-section">
+                                            <a href="login.php.html" class="login-button">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Entrar</span>
+                        </a>
+                                    </div>
+            </div>
+        </div>
+    </header>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchToggle = document.querySelector('.search-toggle');
+            const searchBar = document.querySelector('.search-bar');
+            const searchInput = searchBar.querySelector('input[name="search"]');
+
+            // Função para abrir/fechar a busca
+            searchToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                searchBar.classList.toggle('active');
+                if (searchBar.classList.contains('active')) {
+                    searchInput.focus();
+                }
+            });
+
+            // Fechar a busca quando clicar fora
+            document.addEventListener('click', function(e) {
+                if (!searchBar.contains(e.target) && !searchToggle.contains(e.target)) {
+                    searchBar.classList.remove('active');
+                }
+            });
+
+            // Evitar que a busca feche quando clicar dentro dela
+            searchBar.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+<script>
+(function() {
+    const notifyKey = 'tg_notify_last';
+    const notifyDiv = document.getElementById('telegram-notify');
+    const closeBtn = document.getElementById('close-tg-notify');
+    function shouldShow() {
+        try {
+            const last = localStorage.getItem(notifyKey);
+            if (!last) return true;
+            const lastDate = new Date(parseInt(last, 10));
+            const now = new Date();
+            // 7 dias = 604800000 ms
+            return (now - lastDate) > 604800000;
+        } catch(e) { return true; }
+    }
+    function hideNotify() {
+        notifyDiv.style.display = 'none';
+        try { localStorage.setItem(notifyKey, Date.now().toString()); } catch(e){}
+    }
+    if (shouldShow()) {
+        notifyDiv.style.display = 'block';
+        closeBtn.onclick = hideNotify;
+    }
+})();
+</script>
+</body>
+</html>
+
+<div class="container">
+    <main>
+        <div class="content">
+            <section>
+                <h2>Últimos Episódios</h2>
+                <div class="episode-grid">
+                    <div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Turkey%21&amp;episode=5'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/07/Turkey-Todos-os-Episodios-Online-Goyabu.jpg' alt='Capa de Turkey! - Turkey! - Episódio 5' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Turkey!</div>
+                                            <div class='episode-number'>Episódio 5: Turkey! - Episódio 5</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Necronomico+no+Cosmic+Horror+Show&amp;episode=6'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/07/Necronomico-no-Cosmic-Horror-Show-Todos-os-Episodios-Online-Goyabu.jpg' alt='Capa de Necronomico no Cosmic Horror Show - Necronomico no Cosmic Horror Show - Episódio 6' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Necronomico no Cosmic Horror Show</div>
+                                            <div class='episode-number'>Episódio 6: Necronomico no Cosmic Horror Show - Episódio 6</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Kakkou+no+Iinazuke+2&amp;episode=5'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/07/Kakkou-no-Iinazuke-2-Todos-os-Episodios-Online-Goyabu.webp' alt='Capa de Kakkou no Iinazuke 2 - Kakkou no Iinazuke 2 - Episódio 5' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Kakkou no Iinazuke 2</div>
+                                            <div class='episode-number'>Episódio 5: Kakkou no Iinazuke 2 - Episódio 5</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Kanojo+Okarishimasu+4&amp;episode=6'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/07/Kanojo-Okarishimasu-4.jpg' alt='Capa de Kanojo Okarishimasu 4 - Kanojo Okarishimasu 4 - Episódio 6' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Kanojo Okarishimasu 4</div>
+                                            <div class='episode-number'>Episódio 6: Kanojo Okarishimasu 4 - Episódio 6</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='player.php%3Ftitle=Kaoru+Hana+wa+Rin+to+Saku&amp;episode=5.html'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/07/Kaoru-Hana-wa-Rin-to-Saku-Todos-os-Episodios-Online-Goyabu.webp' alt='Capa de Kaoru Hana wa Rin to Saku - Kaoru Hana wa Rin to Saku - Episódio 5' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Kaoru Hana wa Rin to Saku</div>
+                                            <div class='episode-number'>Episódio 5: Kaoru Hana wa Rin to Saku - Episódio 5</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Watashi+ga+Koibito+ni+Nareru+Wake+Naijan+Muri+muri&amp;episode=5'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/07/Watashi-ga-Koibito-ni-Nareru-Wake-Nai-jan-Muri-Muri-Muri-ja-Nakatta-Todos-os-Episodios-Online-Goyabu.webp' alt='Capa de Watashi ga Koibito ni Nareru Wake Naijan Muri muri - Watashi ga Koibito ni Nareru Wake Naijan Muri muri - Episódio 5' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Watashi ga Koibito ni Nareru Wake Naijan Muri muri</div>
+                                            <div class='episode-number'>Episódio 5: Watashi ga Koibito ni Nareru Wake Naijan Muri muri - Episódio 5</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Food+Court+de%2C+Mata+Ashita&amp;episode=5'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/07/Food-Court-de-Mata-Ashita-Todos-os-Episodios-Online-Goyabu.webp' alt='Capa de Food Court de, Mata Ashita - Food Court de, Mata Ashita - Episódio 5' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Food Court de, Mata Ashita</div>
+                                            <div class='episode-number'>Episódio 5: Food Court de, Mata Ashita - Episódio 5</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Summer+Pockets&amp;episode=18'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/04/Summer-Pockets-Todos-os-Episodios-Online-Goyabu.webp' alt='Capa de Summer Pockets - Summer Pockets - Episódio 18' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Summer Pockets</div>
+                                            <div class='episode-number'>Episódio 18: Summer Pockets - Episódio 18</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Sakamoto+Days&amp;episode=16'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/01/Sakamoto-Days-Todos-os-Episodios-Online-Goyabu.jpg' alt='Capa de Sakamoto Days - Sakamoto Days - Episódio 16' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Sakamoto Days</div>
+                                            <div class='episode-number'>Episódio 16: Sakamoto Days - Episódio 16</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Grand+Blue+2&amp;episode=5'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/07/Grand-Blue-2-Todos-os-Episodios-Online-Goyabu.jpeg' alt='Capa de Grand Blue 2 - Grand Blue 2 - Episódio 5' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Grand Blue 2</div>
+                                            <div class='episode-number'>Episódio 5: Grand Blue 2 - Episódio 5</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Witch+Watch&amp;episode=18'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/04/Witch-Watch-Todos-os-Episodios-Online-Goyabu.webp' alt='Capa de Witch Watch - Witch Watch - Episódio 18' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Witch Watch</div>
+                                            <div class='episode-number'>Episódio 18: Witch Watch - Episódio 18</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Jibaku+Shounen+Hanako-kun+2&amp;episode=17'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/01/Jibaku-Shounen-Hanako-kun-2-Todos-os-Episodios-Online-Goyabu.jpg' alt='Capa de Jibaku Shounen Hanako-kun 2 - Jibaku Shounen Hanako-kun 2 - Episódio 17' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Jibaku Shounen Hanako-kun 2</div>
+                                            <div class='episode-number'>Episódio 17: Jibaku Shounen Hanako-kun 2 - Episódio 17</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Puniru+wa+Kawaii+Slime+2&amp;episode=5'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/07/Puniru-wa-Kawaii-Slime-2-Todos-os-Episodios-Online-Goyabu.webp' alt='Capa de Puniru wa Kawaii Slime 2 - Puniru wa Kawaii Slime 2 - Episódio 5' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Puniru wa Kawaii Slime 2</div>
+                                            <div class='episode-number'>Episódio 5: Puniru wa Kawaii Slime 2 - Episódio 5</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Kijin+Gentoushou&amp;episode=16'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/03/Kijin-Gentoushou-Todos-os-Episodios-Online-Goyabu.jpg' alt='Capa de Kijin Gentoushou - Kijin Gentoushou - Episódio 16' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Kijin Gentoushou</div>
+                                            <div class='episode-number'>Episódio 16: Kijin Gentoushou - Episódio 16</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Dekin+no+Mogura&amp;episode=5'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/07/Dekin-no-Mogura-Todos-os-Episodios-Online-Goyabu.webp' alt='Capa de Dekin no Mogura - Dekin no Mogura - Episódio 5' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Dekin no Mogura</div>
+                                            <div class='episode-number'>Episódio 5: Dekin no Mogura - Episódio 5</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Ruri+no+Houseki&amp;episode=5'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/07/Ruri-no-Houseki-Todos-os-Episodios-Online-Goyabu.webp' alt='Capa de Ruri no Houseki - Ruri no Houseki - Episódio 5' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Ruri no Houseki</div>
+                                            <div class='episode-number'>Episódio 5: Ruri no Houseki - Episódio 5</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Isekai+Mokushiroku+Mynoghra%3A+Hametsu+no+Bunmei+de+Hajimeru+Sekai+Seifuku&amp;episode=5'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/07/Isekai-Mokushiroku-Mynoghra-Hametsu-no-Bunmei-de-Hajimeru-Sekai-Seifuku-Todos-os-Episodios-Online-Goyabu.webp' alt='Capa de Isekai Mokushiroku Mynoghra: Hametsu no Bunmei de Hajimeru Sekai Seifuku - Isekai Mokushiroku Mynoghra: Hametsu no Bunmei de Hajimeru Sekai Seifuku - Episódio 5' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Isekai Mokushiroku Mynoghra: Hametsu no Bunmei de Hajimeru Sekai Seifuku</div>
+                                            <div class='episode-number'>Episódio 5: Isekai Mokushiroku Mynoghra: Hametsu no Bunmei de Hajimeru Sekai Seifuku - Episódio 5</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Nyaight+of+the+Living+Cat&amp;episode=5'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/07/Nyaight-of-the-Living-Cat-Todos-os-Episodios-Online-Goyabu.webp' alt='Capa de Nyaight of the Living Cat - Nyaight of the Living Cat - Episódio 5' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Nyaight of the Living Cat</div>
+                                            <div class='episode-number'>Episódio 5: Nyaight of the Living Cat - Episódio 5</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Game+Center+Shoujo+to+Ibunka+Kouryuu&amp;episode=5'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/07/Game-Center-Shoujo-to-Ibunka-Kouryuu-Todos-os-Episodios-Online-Goyabu.webp' alt='Capa de Game Center Shoujo to Ibunka Kouryuu - Game Center Shoujo to Ibunka Kouryuu - Episódio 5' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Game Center Shoujo to Ibunka Kouryuu</div>
+                                            <div class='episode-number'>Episódio 5: Game Center Shoujo to Ibunka Kouryuu - Episódio 5</div>
+                                        </div>
+                                    </a>
+                                  </div><div class='episode-item'>
+                                    <a href='https://otakuplay.me/player.php?title=Gachiakuta&amp;episode=4'>
+                                        <img src='https://goyabu.to/wp-content/uploads/2025/07/Gachiakuta-Todos-os-Episodios-Online-Goyabu.webp' alt='Capa de Gachiakuta - Gachiakuta - Episódio 4' loading='lazy' />
+                                        <div class='episode-info'>
+                                            <div class='episode-title'>Gachiakuta</div>
+                                            <div class='episode-number'>Episódio 4: Gachiakuta - Episódio 4</div>
+                                        </div>
+                                    </a>
+                                  </div>                </div>
+                <!-- PAGINAÇÃO -->
+                                <nav class="pagination">
+                                            <a href="episodios.php%3Fpage=1.html" class="page-btn">&laquo;</a>
+                                        <a href="episodios.php%3Fpage=1.html" class="page-btn">1</a><a href="episodios.php%3Fpage=2.html" class="page-btn active">2</a><a href="episodios.php%3Fpage=3.html" class="page-btn">3</a><a href="episodios.php%3Fpage=4.html" class="page-btn">4</a><a href="episodios.php%3Fpage=5.html" class="page-btn">5</a><a href="episodios.php%3Fpage=6.html" class="page-btn">6</a><a href="episodios.php%3Fpage=7.html" class="page-btn">7</a><a href="episodios.php%3Fpage=8.html" class="page-btn">8</a><a href="episodios.php%3Fpage=9.html" class="page-btn">9</a><a href="episodios.php%3Fpage=10.html" class="page-btn">10</a><span class="page-btn" style="pointer-events:none;background:none;border:none;">...</span><a href="episodios.php%3Fpage=2201.html" class="page-btn">2201</a>                                            <a href="episodios.php%3Fpage=3.html" class="page-btn">&raquo;</a>
+                                    </nav>
+                                <style>
+                .pagination {
+                    display: flex;
+                    justify-content: center;
+                    gap: 0.4rem;
+                    margin: 32px 0 12px 0;
+                    flex-wrap: wrap;
+                }
+                .page-btn {
+                    background: #231942;
+                    color: #fff;
+                    border: 1.5px solid #9b59b6;
+                    border-radius: 6px;
+                    padding: 7px 15px;
+                    font-size: 1.07rem;
+                    text-decoration: none;
+                    transition: background 0.15s, color 0.15s, border 0.15s;
+                }
+                .page-btn.active, .page-btn:hover {
+                    background: #9b59b6;
+                    color: #fff;
+                    border-color: #b388ff;
+                }
+                </style>
+            </section>
+        </div>
+    </main>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Sobre AngoTaku</h3>
+            <p>O melhor site para assistir animes online gratuitamente, com uma grande variedade de títulos legendados e dublados.</p>
+            <div class="social-links">
+                <a href="https://t.me/otakuplayanimes" target="_blank" title="Telegram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Links Úteis</h3>
+            <ul>
+                <li><a href="dmca.php.html">DMCA</a></li>
+                <li><a href="termos.php.html">Termos de Uso</a></li>
+                <li><a href="privacidade.php.html">Política de Privacidade</a></li>
+                <li><a href="contato.php.html">Contato</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Categorias</h3>
+            <ul>
+                <li><a href="https://otakuplay.me/categoria/acao">Ação</a></li>
+                <li><a href="https://otakuplay.me/categoria/aventura">Aventura</a></li>
+                <li><a href="https://otakuplay.me/categoria/comedia">Comédia</a></li>
+                <li><a href="https://otakuplay.me/categoria/romance">Romance</a></li>
+            </ul>
+        </div>
+        
+    
+    <div class="footer-bottom">
+        <p>&copy; 2025 AngoTaku. Todos os direitos reservados.</p>
+        <p>Este site não armazena nenhum dos arquivos em seu servidor. Todo o conteúdo é fornecido por terceiros.</p>
+    </div>
+</footer>
+
+<style>
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.footer-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.footer-section p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-links a {
+    color: var(--text-secondary);
+    transition: color var(--transition-speed);
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-section ul a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+.footer-section ul a:hover {
+    color: var(--text-primary);
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.newsletter-form button {
+    padding: 0.8rem 1.5rem;
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.newsletter-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        padding: 2rem 1rem;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .newsletter-form button {
+        width: 100%;
+    }
+}
+</style>
+</body>
+</html>

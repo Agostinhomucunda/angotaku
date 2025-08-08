@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0f0f0f">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Dragon Ball Dublado - AngoTaku</title>
+    <link rel="stylesheet" href="css/anime.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Ball Dublado</title>
+    <link rel="icon" type="image/png" href="includes/favicon.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset e variáveis */
+        :root {
+            --primary: #8A2BE2;
+            --primary-light: #9B4BFF;
+            --accent: #FF3E6C;
+            --text: #FFFFFF;
+            --text-secondary: rgba(255, 255, 255, 0.85);
+            --background: rgba(16, 16, 24, 0.95);
+            --nav-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilos base do header */
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: var(--nav-height);
+            padding: 0 2rem;
+            background: var(--background);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Efeito de borda gradiente animada */
+        .nav-container::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(
+                90deg,
+                var(--primary) 0%,
+                var(--accent) 50%,
+                var(--primary) 100%
+            );
+            background-size: 200% 100%;
+            animation: gradientBorder 3s linear infinite;
+        }
+
+        @keyframes gradientBorder {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
+
+        /* Grupos de navegação */
+        .left-group, .right-group {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        /* Responsividade dos links de navegação */
+        .nav-links {
+            display: flex;
+            gap: 1.1rem;
+            flex-wrap: wrap;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            max-width: 100vw;
+        }
+        .nav-links::-webkit-scrollbar {
+            display: none;
+        }
+        @media (max-width: 900px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+                height: auto;
+                padding: 0 0.5rem;
+            }
+            .left-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .nav-links {
+                width: 100%;
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 6px;
+                margin-bottom: 2px;
+            }
+            .right-group {
+                flex-direction: row;
+                width: 100%;
+                justify-content: flex-end;
+                margin-top: 8px;
+                gap: 1rem;
+            }
+        }
+        @media (max-width: 600px) {
+            :root {
+                --nav-height: 48px;
+            }
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+                height: auto;
+                padding: 0 0.1rem;
+            }
+            .left-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.22rem;
+            }
+            .nav-links {
+                width: 100vw;
+                gap: 0.45rem;
+                font-size: 0.89rem;
+                padding-bottom: 3px;
+            }
+            .right-group {
+                flex-direction: row;
+                width: 100%;
+                justify-content: flex-end;
+                margin-top: 4px;
+                gap: 0.5rem;
+            }
+            .search-toggle {
+                width: 32px;
+                height: 32px;
+                font-size: 1.05rem;
+                min-width: 32px;
+                min-height: 32px;
+                padding: 0 3px;
+            }
+            .search-bar input[type="text"] {
+                font-size: 0.97rem;
+                padding: 5px 7px;
+            }
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+        /* Links de navegação */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--text);
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.25);
+        }
+
+        .nav-link i {
+            font-size: 1.1rem;
+        }
+
+        /* Perfil do usuário */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .user-profile:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .user-profile .username {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        /* Botão de login */
+        .login-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border: none;
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.25);
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.3);
+            filter: brightness(1.1);
+        }
+
+        /* Busca */
+        .search-container {
+            position: relative;
+        }
+
+        .search-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .search-bar {
+            display: none;
+            position: absolute;
+            top: calc(100% + 1rem);
+            right: 0;
+            background: var(--background);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            width: 300px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            animation: slideDown 0.3s ease;
+        }
+
+        .search-bar.active {
+            display: block;
+        }
+
+        .search-bar input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            font-size: 0.95rem;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .user-profile .username {
+                display: none;
+            }
+
+            .user-profile {
+                padding: 0.4rem;
+            }
+
+            .user-profile .avatar {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: var(--background);
+                padding: 0.8rem;
+                justify-content: space-around;
+                box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-link {
+                flex-direction: column;
+                font-size: 0.8rem;
+                padding: 0.5rem;
+            }
+
+            .nav-link i {
+                font-size: 1.2rem;
+            }
+
+            .nav-link span {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+    <script src="assets/js/dev-blocker.js"></script>
+    <script>
+        // Desabilita tecla F12
+        document.onkeypress = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        // Desabilita clique direito
+        document.onmousedown = function (event) {
+            event = (event || window.event);
+            if (event.button == 2) {
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="telegram-notify" style="display:none;position:relative;">
+      <div style="background:linear-gradient(90deg,#9b59b6,#6c3483);color:#fff;padding:12px 18px 12px 40px;font-size:1rem;display:flex;align-items:center;justify-content:center;gap:18px;box-shadow:0 2px 18px #0003;z-index:2000;position:relative;">
+        <i class="fab fa-telegram-plane" style="font-size:1.5em;"></i>
+        <span>Entre em nosso canal no <b>Telegram</b> para novidades e avisos! <a href="https://t.me/otakuplayanimes" target="_blank" style="color:#fff;text-decoration:underline;font-weight:bold;">@otakuplayanimes</a></span>
+        <button id="close-tg-notify" style="background:none;border:none;color:#fff;font-size:1.4em;margin-left:18px;cursor:pointer;">&times;</button>
+      </div>
+    </div>
+    <header>
+        <div class="nav-container">
+            <div class="left-group">
+                <a href="index.html" class="logo">
+                    <span>AngoTaku</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link ">
+                        <i class="fas fa-home"></i>
+                        <span>Início</span>
+                    </a>
+                    <a href="lista.php.html" class="nav-link ">
+                        <i class="fas fa-list"></i>
+                        <span>Lista</span>
+                    </a>
+                    <a href="lista.php.html#search" class="nav-link search-nav-link">
+                        <i class="fas fa-search"></i>
+                        <span>Buscar</span>
+                    </a>
+                    <a href="episodios.php.html" class="nav-link ">
+                        <i class="fas fa-heart"></i>
+                        <span>Episódios</span>
+                    </a>
+                    <a href="ranking.php.html" class="nav-link ">
+                        <i class="fas fa-trophy"></i>
+                        <span>Ranking</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="right-group">
+                <div class="search-container">
+                    <button type="button" class="search-toggle">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <form action="lista.php.html" method="GET" class="search-bar">
+                        <input type="hidden" name="genre" value="">
+                        <input type="hidden" name="year" value="">
+                        <input type="hidden" name="dubbed" value="">
+                        <input type="text" name="search" placeholder="Buscar animes..." required>
+                    </form>
+                </div>
+
+                <div class="user-section">
+                                            <a href="login.php.html" class="login-button">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Entrar</span>
+                        </a>
+                                    </div>
+            </div>
+        </div>
+    </header>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchToggle = document.querySelector('.search-toggle');
+            const searchBar = document.querySelector('.search-bar');
+            const searchInput = searchBar.querySelector('input[name="search"]');
+
+            // Função para abrir/fechar a busca
+            searchToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                searchBar.classList.toggle('active');
+                if (searchBar.classList.contains('active')) {
+                    searchInput.focus();
+                }
+            });
+
+            // Fechar a busca quando clicar fora
+            document.addEventListener('click', function(e) {
+                if (!searchBar.contains(e.target) && !searchToggle.contains(e.target)) {
+                    searchBar.classList.remove('active');
+                }
+            });
+
+            // Evitar que a busca feche quando clicar dentro dela
+            searchBar.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+<script>
+(function() {
+    const notifyKey = 'tg_notify_last';
+    const notifyDiv = document.getElementById('telegram-notify');
+    const closeBtn = document.getElementById('close-tg-notify');
+    function shouldShow() {
+        try {
+            const last = localStorage.getItem(notifyKey);
+            if (!last) return true;
+            const lastDate = new Date(parseInt(last, 10));
+            const now = new Date();
+            // 7 dias = 604800000 ms
+            return (now - lastDate) > 604800000;
+        } catch(e) { return true; }
+    }
+    function hideNotify() {
+        notifyDiv.style.display = 'none';
+        try { localStorage.setItem(notifyKey, Date.now().toString()); } catch(e){}
+    }
+    if (shouldShow()) {
+        notifyDiv.style.display = 'block';
+        closeBtn.onclick = hideNotify;
+    }
+})();
+</script>
+</body>
+</html>
+
+    <div class="main-content">
+        <div class="container">
+                            <div class="anime-header">
+                    <div class="container">
+                        <div class="anime-content">
+                            <div class="anime-poster">
+                                <img src="https://goyabu.to/wp-content/uploads/2023/04/Dragon-Ball-Todos-os-Episodios-Online-Goyabu.jpg" alt="Dragon Ball Dublado">
+                            </div>
+                            <div class="anime-info">
+                                <h1 class="anime-title">Dragon Ball Dublado</h1>
+                                
+                                <div class="anime-meta-grid">
+                                    
+                                                                        <div class="meta-label">Episódios</div>
+                                    <div class="meta-value">153</div>
+                                    
+                                    
+                                                                        <div class="meta-label">Ano</div>
+                                    <div class="meta-value">1986</div>
+                                    
+                                    <div class="meta-label">Visualizações</div>
+                                    <div class="meta-value" id="anime-views">67</div>
+
+                                                                        <div class="meta-label">Gêneros</div>
+                                    <div class="meta-value genres">
+                                                                                    <span class="genre-tag">Ação</span>
+                                                                                    <span class="genre-tag">Artes Marciais</span>
+                                                                                    <span class="genre-tag">Aventura</span>
+                                                                                    <span class="genre-tag">Comédia</span>
+                                                                                    <span class="genre-tag">Fantasia</span>
+                                                                                    <span class="genre-tag">Ficção científica</span>
+                                                                                    <span class="genre-tag">Shounen</span>
+                                                                                    <span class="genre-tag">Super Poderes</span>
+                                                                            </div>
+                                                                    </div>
+
+                                <div class="anime-synopsis">
+                                    <h3 class="synopsis-title">Sinopse</h3>
+                                    <p class="synopsis-text">Goku foi encontrado por Gohan quando era apenas um bebê e o bondoso velhinho o adotou como neto. Gohan deu de presente a Goku a esfera de quatro estrelas. Quando conhece Bulma, Goku fica sabendo da lenda das esferas do dragão. Segundo a lenda, quem reunir as sete esferas invocará Shen Long, o dragão guardião, cujo poder é de realizar qualquer desejo.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="episodes-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-play-circle"></i>
+                        Episódios
+                    </h2>
+                    <div class="episodes">
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=1" class="episode">
+                                <div class="episode-number">1</div>
+                                <div class="episode-title">Episódio 1</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=2" class="episode">
+                                <div class="episode-number">2</div>
+                                <div class="episode-title">Episódio 2</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=3" class="episode">
+                                <div class="episode-number">3</div>
+                                <div class="episode-title">Episódio 3</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=4" class="episode">
+                                <div class="episode-number">4</div>
+                                <div class="episode-title">Episódio 4</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=5" class="episode">
+                                <div class="episode-number">5</div>
+                                <div class="episode-title">Episódio 5</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=6" class="episode">
+                                <div class="episode-number">6</div>
+                                <div class="episode-title">Episódio 6</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=7" class="episode">
+                                <div class="episode-number">7</div>
+                                <div class="episode-title">Episódio 7</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=8" class="episode">
+                                <div class="episode-number">8</div>
+                                <div class="episode-title">Episódio 8</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=9" class="episode">
+                                <div class="episode-number">9</div>
+                                <div class="episode-title">Episódio 9</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=10" class="episode">
+                                <div class="episode-number">10</div>
+                                <div class="episode-title">Episódio 10</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=11" class="episode">
+                                <div class="episode-number">11</div>
+                                <div class="episode-title">Episódio 11</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=12" class="episode">
+                                <div class="episode-number">12</div>
+                                <div class="episode-title">Episódio 12</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=13" class="episode">
+                                <div class="episode-number">13</div>
+                                <div class="episode-title">Episódio 13</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=14" class="episode">
+                                <div class="episode-number">14</div>
+                                <div class="episode-title">Episódio 14</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=15" class="episode">
+                                <div class="episode-number">15</div>
+                                <div class="episode-title">Episódio 15</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=16" class="episode">
+                                <div class="episode-number">16</div>
+                                <div class="episode-title">Episódio 16</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=17" class="episode">
+                                <div class="episode-number">17</div>
+                                <div class="episode-title">Episódio 17</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=18" class="episode">
+                                <div class="episode-number">18</div>
+                                <div class="episode-title">Episódio 18</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=19" class="episode">
+                                <div class="episode-number">19</div>
+                                <div class="episode-title">Episódio 19</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=20" class="episode">
+                                <div class="episode-number">20</div>
+                                <div class="episode-title">Episódio 20</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=21" class="episode">
+                                <div class="episode-number">21</div>
+                                <div class="episode-title">Episódio 21</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=22" class="episode">
+                                <div class="episode-number">22</div>
+                                <div class="episode-title">Episódio 22</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=23" class="episode">
+                                <div class="episode-number">23</div>
+                                <div class="episode-title">Episódio 23</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=24" class="episode">
+                                <div class="episode-number">24</div>
+                                <div class="episode-title">Episódio 24</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=25" class="episode">
+                                <div class="episode-number">25</div>
+                                <div class="episode-title">Episódio 25</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=26" class="episode">
+                                <div class="episode-number">26</div>
+                                <div class="episode-title">Episódio 26</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=27" class="episode">
+                                <div class="episode-number">27</div>
+                                <div class="episode-title">Episódio 27</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=28" class="episode">
+                                <div class="episode-number">28</div>
+                                <div class="episode-title">Episódio 28</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=29" class="episode">
+                                <div class="episode-number">29</div>
+                                <div class="episode-title">Episódio 29</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=30" class="episode">
+                                <div class="episode-number">30</div>
+                                <div class="episode-title">Episódio 30</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=31" class="episode">
+                                <div class="episode-number">31</div>
+                                <div class="episode-title">Episódio 31</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=32" class="episode">
+                                <div class="episode-number">32</div>
+                                <div class="episode-title">Episódio 32</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=33" class="episode">
+                                <div class="episode-number">33</div>
+                                <div class="episode-title">Episódio 33</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=34" class="episode">
+                                <div class="episode-number">34</div>
+                                <div class="episode-title">Episódio 34</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=35" class="episode">
+                                <div class="episode-number">35</div>
+                                <div class="episode-title">Episódio 35</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=36" class="episode">
+                                <div class="episode-number">36</div>
+                                <div class="episode-title">Episódio 36</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=37" class="episode">
+                                <div class="episode-number">37</div>
+                                <div class="episode-title">Episódio 37</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=38" class="episode">
+                                <div class="episode-number">38</div>
+                                <div class="episode-title">Episódio 38</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=39" class="episode">
+                                <div class="episode-number">39</div>
+                                <div class="episode-title">Episódio 39</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=40" class="episode">
+                                <div class="episode-number">40</div>
+                                <div class="episode-title">Episódio 40</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=41" class="episode">
+                                <div class="episode-number">41</div>
+                                <div class="episode-title">Episódio 41</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=42" class="episode">
+                                <div class="episode-number">42</div>
+                                <div class="episode-title">Episódio 42</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=43" class="episode">
+                                <div class="episode-number">43</div>
+                                <div class="episode-title">Episódio 43</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=44" class="episode">
+                                <div class="episode-number">44</div>
+                                <div class="episode-title">Episódio 44</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=45" class="episode">
+                                <div class="episode-number">45</div>
+                                <div class="episode-title">Episódio 45</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=46" class="episode">
+                                <div class="episode-number">46</div>
+                                <div class="episode-title">Episódio 46</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=47" class="episode">
+                                <div class="episode-number">47</div>
+                                <div class="episode-title">Episódio 47</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=48" class="episode">
+                                <div class="episode-number">48</div>
+                                <div class="episode-title">Episódio 48</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=49" class="episode">
+                                <div class="episode-number">49</div>
+                                <div class="episode-title">Episódio 49</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=50" class="episode">
+                                <div class="episode-number">50</div>
+                                <div class="episode-title">Episódio 50</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=51" class="episode">
+                                <div class="episode-number">51</div>
+                                <div class="episode-title">Episódio 51</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=52" class="episode">
+                                <div class="episode-number">52</div>
+                                <div class="episode-title">Episódio 52</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=53" class="episode">
+                                <div class="episode-number">53</div>
+                                <div class="episode-title">Episódio 53</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=54" class="episode">
+                                <div class="episode-number">54</div>
+                                <div class="episode-title">Episódio 54</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=55" class="episode">
+                                <div class="episode-number">55</div>
+                                <div class="episode-title">Episódio 55</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=56" class="episode">
+                                <div class="episode-number">56</div>
+                                <div class="episode-title">Episódio 56</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=57" class="episode">
+                                <div class="episode-number">57</div>
+                                <div class="episode-title">Episódio 57</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=58" class="episode">
+                                <div class="episode-number">58</div>
+                                <div class="episode-title">Episódio 58</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=59" class="episode">
+                                <div class="episode-number">59</div>
+                                <div class="episode-title">Episódio 59</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=60" class="episode">
+                                <div class="episode-number">60</div>
+                                <div class="episode-title">Episódio 60</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=61" class="episode">
+                                <div class="episode-number">61</div>
+                                <div class="episode-title">Episódio 61</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=62" class="episode">
+                                <div class="episode-number">62</div>
+                                <div class="episode-title">Episódio 62</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=63" class="episode">
+                                <div class="episode-number">63</div>
+                                <div class="episode-title">Episódio 63</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=64" class="episode">
+                                <div class="episode-number">64</div>
+                                <div class="episode-title">Episódio 64</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=65" class="episode">
+                                <div class="episode-number">65</div>
+                                <div class="episode-title">Episódio 65</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=66" class="episode">
+                                <div class="episode-number">66</div>
+                                <div class="episode-title">Episódio 66</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=67" class="episode">
+                                <div class="episode-number">67</div>
+                                <div class="episode-title">Episódio 67</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=68" class="episode">
+                                <div class="episode-number">68</div>
+                                <div class="episode-title">Episódio 68</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=69" class="episode">
+                                <div class="episode-number">69</div>
+                                <div class="episode-title">Episódio 69</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=70" class="episode">
+                                <div class="episode-number">70</div>
+                                <div class="episode-title">Episódio 70</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=71" class="episode">
+                                <div class="episode-number">71</div>
+                                <div class="episode-title">Episódio 71</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=72" class="episode">
+                                <div class="episode-number">72</div>
+                                <div class="episode-title">Episódio 72</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=73" class="episode">
+                                <div class="episode-number">73</div>
+                                <div class="episode-title">Episódio 73</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=74" class="episode">
+                                <div class="episode-number">74</div>
+                                <div class="episode-title">Episódio 74</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=75" class="episode">
+                                <div class="episode-number">75</div>
+                                <div class="episode-title">Episódio 75</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=76" class="episode">
+                                <div class="episode-number">76</div>
+                                <div class="episode-title">Episódio 76</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=77" class="episode">
+                                <div class="episode-number">77</div>
+                                <div class="episode-title">Episódio 77</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=78" class="episode">
+                                <div class="episode-number">78</div>
+                                <div class="episode-title">Episódio 78</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=79" class="episode">
+                                <div class="episode-number">79</div>
+                                <div class="episode-title">Episódio 79</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=80" class="episode">
+                                <div class="episode-number">80</div>
+                                <div class="episode-title">Episódio 80</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=81" class="episode">
+                                <div class="episode-number">81</div>
+                                <div class="episode-title">Episódio 81</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=82" class="episode">
+                                <div class="episode-number">82</div>
+                                <div class="episode-title">Episódio 82</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=83" class="episode">
+                                <div class="episode-number">83</div>
+                                <div class="episode-title">Episódio 83</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=84" class="episode">
+                                <div class="episode-number">84</div>
+                                <div class="episode-title">Episódio 84</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=85" class="episode">
+                                <div class="episode-number">85</div>
+                                <div class="episode-title">Episódio 85</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=86" class="episode">
+                                <div class="episode-number">86</div>
+                                <div class="episode-title">Episódio 86</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=87" class="episode">
+                                <div class="episode-number">87</div>
+                                <div class="episode-title">Episódio 87</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=88" class="episode">
+                                <div class="episode-number">88</div>
+                                <div class="episode-title">Episódio 88</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=89" class="episode">
+                                <div class="episode-number">89</div>
+                                <div class="episode-title">Episódio 89</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=90" class="episode">
+                                <div class="episode-number">90</div>
+                                <div class="episode-title">Episódio 90</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=91" class="episode">
+                                <div class="episode-number">91</div>
+                                <div class="episode-title">Episódio 91</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=92" class="episode">
+                                <div class="episode-number">92</div>
+                                <div class="episode-title">Episódio 92</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=93" class="episode">
+                                <div class="episode-number">93</div>
+                                <div class="episode-title">Episódio 93</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=94" class="episode">
+                                <div class="episode-number">94</div>
+                                <div class="episode-title">Episódio 94</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=95" class="episode">
+                                <div class="episode-number">95</div>
+                                <div class="episode-title">Episódio 95</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=96" class="episode">
+                                <div class="episode-number">96</div>
+                                <div class="episode-title">Episódio 96</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=97" class="episode">
+                                <div class="episode-number">97</div>
+                                <div class="episode-title">Episódio 97</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=98" class="episode">
+                                <div class="episode-number">98</div>
+                                <div class="episode-title">Episódio 98</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=99" class="episode">
+                                <div class="episode-number">99</div>
+                                <div class="episode-title">Episódio 99</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=100" class="episode">
+                                <div class="episode-number">100</div>
+                                <div class="episode-title">Episódio 100</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=101" class="episode">
+                                <div class="episode-number">101</div>
+                                <div class="episode-title">Episódio 101</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=102" class="episode">
+                                <div class="episode-number">102</div>
+                                <div class="episode-title">Episódio 102</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=103" class="episode">
+                                <div class="episode-number">103</div>
+                                <div class="episode-title">Episódio 103</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=104" class="episode">
+                                <div class="episode-number">104</div>
+                                <div class="episode-title">Episódio 104</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=105" class="episode">
+                                <div class="episode-number">105</div>
+                                <div class="episode-title">Episódio 105</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=106" class="episode">
+                                <div class="episode-number">106</div>
+                                <div class="episode-title">Episódio 106</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=107" class="episode">
+                                <div class="episode-number">107</div>
+                                <div class="episode-title">Episódio 107</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=108" class="episode">
+                                <div class="episode-number">108</div>
+                                <div class="episode-title">Episódio 108</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=109" class="episode">
+                                <div class="episode-number">109</div>
+                                <div class="episode-title">Episódio 109</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=110" class="episode">
+                                <div class="episode-number">110</div>
+                                <div class="episode-title">Episódio 110</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=111" class="episode">
+                                <div class="episode-number">111</div>
+                                <div class="episode-title">Episódio 111</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=112" class="episode">
+                                <div class="episode-number">112</div>
+                                <div class="episode-title">Episódio 112</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=113" class="episode">
+                                <div class="episode-number">113</div>
+                                <div class="episode-title">Episódio 113</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=114" class="episode">
+                                <div class="episode-number">114</div>
+                                <div class="episode-title">Episódio 114</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=115" class="episode">
+                                <div class="episode-number">115</div>
+                                <div class="episode-title">Episódio 115</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=116" class="episode">
+                                <div class="episode-number">116</div>
+                                <div class="episode-title">Episódio 116</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=117" class="episode">
+                                <div class="episode-number">117</div>
+                                <div class="episode-title">Episódio 117</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=118" class="episode">
+                                <div class="episode-number">118</div>
+                                <div class="episode-title">Episódio 118</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=119" class="episode">
+                                <div class="episode-number">119</div>
+                                <div class="episode-title">Episódio 119</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=120" class="episode">
+                                <div class="episode-number">120</div>
+                                <div class="episode-title">Episódio 120</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=121" class="episode">
+                                <div class="episode-number">121</div>
+                                <div class="episode-title">Episódio 121</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=122" class="episode">
+                                <div class="episode-number">122</div>
+                                <div class="episode-title">Episódio 122</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=123" class="episode">
+                                <div class="episode-number">123</div>
+                                <div class="episode-title">Episódio 123</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=124" class="episode">
+                                <div class="episode-number">124</div>
+                                <div class="episode-title">Episódio 124</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=125" class="episode">
+                                <div class="episode-number">125</div>
+                                <div class="episode-title">Episódio 125</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=126" class="episode">
+                                <div class="episode-number">126</div>
+                                <div class="episode-title">Episódio 126</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=127" class="episode">
+                                <div class="episode-number">127</div>
+                                <div class="episode-title">Episódio 127</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=128" class="episode">
+                                <div class="episode-number">128</div>
+                                <div class="episode-title">Episódio 128</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=129" class="episode">
+                                <div class="episode-number">129</div>
+                                <div class="episode-title">Episódio 129</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=130" class="episode">
+                                <div class="episode-number">130</div>
+                                <div class="episode-title">Episódio 130</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=131" class="episode">
+                                <div class="episode-number">131</div>
+                                <div class="episode-title">Episódio 131</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=132" class="episode">
+                                <div class="episode-number">132</div>
+                                <div class="episode-title">Episódio 132</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=133" class="episode">
+                                <div class="episode-number">133</div>
+                                <div class="episode-title">Episódio 133</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=134" class="episode">
+                                <div class="episode-number">134</div>
+                                <div class="episode-title">Episódio 134</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=135" class="episode">
+                                <div class="episode-number">135</div>
+                                <div class="episode-title">Episódio 135</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=136" class="episode">
+                                <div class="episode-number">136</div>
+                                <div class="episode-title">Episódio 136</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=137" class="episode">
+                                <div class="episode-number">137</div>
+                                <div class="episode-title">Episódio 137</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=138" class="episode">
+                                <div class="episode-number">138</div>
+                                <div class="episode-title">Episódio 138</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=139" class="episode">
+                                <div class="episode-number">139</div>
+                                <div class="episode-title">Episódio 139</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=140" class="episode">
+                                <div class="episode-number">140</div>
+                                <div class="episode-title">Episódio 140</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=141" class="episode">
+                                <div class="episode-number">141</div>
+                                <div class="episode-title">Episódio 141</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=142" class="episode">
+                                <div class="episode-number">142</div>
+                                <div class="episode-title">Episódio 142</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=143" class="episode">
+                                <div class="episode-number">143</div>
+                                <div class="episode-title">Episódio 143</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=144" class="episode">
+                                <div class="episode-number">144</div>
+                                <div class="episode-title">Episódio 144</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=145" class="episode">
+                                <div class="episode-number">145</div>
+                                <div class="episode-title">Episódio 145</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=146" class="episode">
+                                <div class="episode-number">146</div>
+                                <div class="episode-title">Episódio 146</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=147" class="episode">
+                                <div class="episode-number">147</div>
+                                <div class="episode-title">Episódio 147</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=148" class="episode">
+                                <div class="episode-number">148</div>
+                                <div class="episode-title">Episódio 148</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=149" class="episode">
+                                <div class="episode-number">149</div>
+                                <div class="episode-title">Episódio 149</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=150" class="episode">
+                                <div class="episode-number">150</div>
+                                <div class="episode-title">Episódio 150</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    0                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=151" class="episode">
+                                <div class="episode-number">151</div>
+                                <div class="episode-title">Episódio 151</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=152" class="episode">
+                                <div class="episode-number">152</div>
+                                <div class="episode-title">Episódio 152</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                                    <a href="https://otakuplay.me/player.php?title=Dragon+Ball+Dublado&amp;episode=153" class="episode">
+                                <div class="episode-number">153</div>
+                                <div class="episode-title">Episódio 153</div>
+                                <div class="episode-views">
+                                    <i class="fas fa-eye"></i>
+                                    1                                </div>
+                            </a>
+                                            </div>
+                </div>
+
+                                                <div class="recommended-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-star"></i>
+                        Recomendados
+                    </h2>
+                    <div class="recommended-list">
+                                                    <a href="https://otakuplay.me/anime.php?title=Yuusha+Party+wo+Tsuihou+sareta+Beast+Tamer+Saikyoushu+no+Nekomimi+Shoujo+to+Deau+Dublado" class="recommended-item">
+                                <img src="https://goyabu.to/wp-content/uploads/2023/08/Yuusha-Party-wo-Tsuihou-sareta-Beast-Tamer-Saikyoushu-no-Nekomimi-Shoujo-to-Deau-Dublado-Todos-os-Episodios-Online-Goyabu.jpg" alt="Yuusha Party wo Tsuihou sareta Beast Tamer Saikyoushu no Nekomimi Shoujo to Deau Dublado" class="recommended-image">
+                                <div class="recommended-title">Yuusha Party wo Tsuihou sareta Beast Tamer Saikyoushu no Nekomimi Shoujo to Deau Dublado</div>
+                            </a>
+                                                    <a href="https://otakuplay.me/anime.php?title=Nourin" class="recommended-item">
+                                <img src="https://goyabu.to/wp-content/uploads/2023/05/nourin-todos-os-episodios-goyabu.jpg" alt="Nourin" class="recommended-image">
+                                <div class="recommended-title">Nourin</div>
+                            </a>
+                                                    <a href="https://otakuplay.me/anime.php?title=Koyomimonogatari" class="recommended-item">
+                                <img src="https://goyabu.to/wp-content/uploads/2023/04/koyomimonogatari-todos-os-episodios-goyabu.jpg" alt="Koyomimonogatari" class="recommended-image">
+                                <div class="recommended-title">Koyomimonogatari</div>
+                            </a>
+                                                    <a href="https://otakuplay.me/anime.php?title=Ame+to+Kimi+to" class="recommended-item">
+                                <img src="https://goyabu.to/wp-content/uploads/2025/07/Ame-to-Kimi-to-Todos-os-Episodios-Online-Goyabu.webp" alt="Ame to Kimi to" class="recommended-image">
+                                <div class="recommended-title">Ame to Kimi to</div>
+                            </a>
+                                                    <a href="https://otakuplay.me/anime.php?title=Prison+School" class="recommended-item">
+                                <img src="https://goyabu.to/wp-content/uploads/2023/04/prison-school-todos-os-episodios-goyabu.jpg" alt="Prison School" class="recommended-image">
+                                <div class="recommended-title">Prison School</div>
+                            </a>
+                                                    <a href="https://otakuplay.me/anime.php?title=Sand+Land%3A+The+Series" class="recommended-item">
+                                <img src="https://goyabu.to/wp-content/uploads/2024/03/Sand-Land-The-Series-Todos-os-Episodios-Online-Goyabu.jpg" alt="Sand Land: The Series" class="recommended-image">
+                                <div class="recommended-title">Sand Land: The Series</div>
+                            </a>
+                                            </div>
+                </div>
+                                    </div>
+    </div>
+
+    <footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Sobre AngoTaku</h3>
+            <p>O melhor site para assistir animes online gratuitamente, com uma grande variedade de títulos legendados e dublados.</p>
+            <div class="social-links">
+                <a href="https://t.me/otakuplayanimes" target="_blank" title="Telegram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Links Úteis</h3>
+            <ul>
+                <li><a href="dmca.php.html">DMCA</a></li>
+                <li><a href="termos.php.html">Termos de Uso</a></li>
+                <li><a href="privacidade.php.html">Política de Privacidade</a></li>
+                <li><a href="contato.php.html">Contato</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Categorias</h3>
+            <ul>
+                <li><a href="https://otakuplay.me/categoria/acao">Ação</a></li>
+                <li><a href="https://otakuplay.me/categoria/aventura">Aventura</a></li>
+                <li><a href="https://otakuplay.me/categoria/comedia">Comédia</a></li>
+                <li><a href="https://otakuplay.me/categoria/romance">Romance</a></li>
+            </ul>
+        </div>
+        
+    
+    <div class="footer-bottom">
+        <p>&copy; 2025 AngoTaku. Todos os direitos reservados.</p>
+        <p>Este site não armazena nenhum dos arquivos em seu servidor. Todo o conteúdo é fornecido por terceiros.</p>
+    </div>
+</footer>
+
+<style>
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.footer-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.footer-section p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-links a {
+    color: var(--text-secondary);
+    transition: color var(--transition-speed);
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-section ul a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+.footer-section ul a:hover {
+    color: var(--text-primary);
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.newsletter-form button {
+    padding: 0.8rem 1.5rem;
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.newsletter-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        padding: 2rem 1rem;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .newsletter-form button {
+        width: 100%;
+    }
+}
+</style>
+</body>
+</html>
+</body>
+</html>
