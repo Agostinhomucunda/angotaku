@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<!-- Mirrored from AngoTaku.me/lista.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Aug 2025 21:01:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngoTaku</title>
+    <link rel="icon" type="image/png" href="includes/favicon.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+        /* Reset e variáveis */
+        :root {
+            --primary: #8A2BE2;
+            --primary-light: #9B4BFF;
+            --accent: #FF3E6C;
+            --text: #FFFFFF;
+            --text-secondary: rgba(255, 255, 255, 0.85);
+            --background: rgba(16, 16, 24, 0.95);
+            --nav-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilos base do header */
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: var(--nav-height);
+            padding: 0 2rem;
+            background: var(--background);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Efeito de borda gradiente animada */
+        .nav-container::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(
+                90deg,
+                var(--primary) 0%,
+                var(--accent) 50%,
+                var(--primary) 100%
+            );
+            background-size: 200% 100%;
+            animation: gradientBorder 3s linear infinite;
+        }
+
+        @keyframes gradientBorder {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
+
+        /* Grupos de navegação */
+        .left-group, .right-group {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        /* Responsividade dos links de navegação */
+        .nav-links {
+            display: flex;
+            gap: 1.1rem;
+            flex-wrap: wrap;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            max-width: 100vw;
+        }
+        .nav-links::-webkit-scrollbar {
+            display: none;
+        }
+        @media (max-width: 900px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+                height: auto;
+                padding: 0 0.5rem;
+            }
+            .left-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .nav-links {
+                width: 100%;
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 6px;
+                margin-bottom: 2px;
+            }
+            .right-group {
+                flex-direction: row;
+                width: 100%;
+                justify-content: flex-end;
+                margin-top: 8px;
+                gap: 1rem;
+            }
+        }
+        @media (max-width: 600px) {
+            :root {
+                --nav-height: 48px;
+            }
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+                height: auto;
+                padding: 0 0.1rem;
+            }
+            .left-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.22rem;
+            }
+            .nav-links {
+                width: 100vw;
+                gap: 0.45rem;
+                font-size: 0.89rem;
+                padding-bottom: 3px;
+            }
+            .right-group {
+                flex-direction: row;
+                width: 100%;
+                justify-content: flex-end;
+                margin-top: 4px;
+                gap: 0.5rem;
+            }
+            .search-toggle {
+                width: 32px;
+                height: 32px;
+                font-size: 1.05rem;
+                min-width: 32px;
+                min-height: 32px;
+                padding: 0 3px;
+            }
+            .search-bar input[type="text"] {
+                font-size: 0.97rem;
+                padding: 5px 7px;
+            }
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+        /* Links de navegação */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--text);
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.25);
+        }
+
+        .nav-link i {
+            font-size: 1.1rem;
+        }
+
+        /* Perfil do usuário */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .user-profile:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .user-profile .username {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        /* Botão de login */
+        .login-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border: none;
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.25);
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.3);
+            filter: brightness(1.1);
+        }
+
+        /* Busca */
+        .search-container {
+            position: relative;
+        }
+
+        .search-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .search-bar {
+            display: none;
+            position: absolute;
+            top: calc(100% + 1rem);
+            right: 0;
+            background: var(--background);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            width: 300px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            animation: slideDown 0.3s ease;
+        }
+
+        .search-bar.active {
+            display: block;
+        }
+
+        .search-bar input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            font-size: 0.95rem;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .user-profile .username {
+                display: none;
+            }
+
+            .user-profile {
+                padding: 0.4rem;
+            }
+
+            .user-profile .avatar {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: var(--background);
+                padding: 0.8rem;
+                justify-content: space-around;
+                box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-link {
+                flex-direction: column;
+                font-size: 0.8rem;
+                padding: 0.5rem;
+            }
+
+            .nav-link i {
+                font-size: 1.2rem;
+            }
+
+            .nav-link span {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+    <script src="assets/js/dev-blocker.js"></script>
+    <script>
+        // Desabilita tecla F12
+        document.onkeypress = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        // Desabilita clique direito
+        document.onmousedown = function (event) {
+            event = (event || window.event);
+            if (event.button == 2) {
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="telegram-notify" style="display:none;position:relative;">
+      <div style="background:linear-gradient(90deg,#9b59b6,#6c3483);color:#fff;padding:12px 18px 12px 40px;font-size:1rem;display:flex;align-items:center;justify-content:center;gap:18px;box-shadow:0 2px 18px #0003;z-index:2000;position:relative;">
+        <i class="fab fa-telegram-plane" style="font-size:1.5em;"></i>
+        <span>Entre em nosso canal no <b>Telegram</b> para novidades e avisos! <a href="" target="_blank" style="color:#fff;text-decoration:underline;font-weight:bold;">@AngoTakuanimes</a></span>
+        <button id="close-tg-notify" style="background:none;border:none;color:#fff;font-size:1.4em;margin-left:18px;cursor:pointer;">&times;</button>
+      </div>
+    </div>
+    <header>
+        <div class="nav-container">
+            <div class="left-group">
+                <a href="index.html" class="logo">
+                    <span>AngoTaku</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link ">
+                        <i class="fas fa-home"></i>
+                        <span>Início</span>
+                    </a>
+                    <a href="lista.html" class="nav-link active">
+                        <i class="fas fa-list"></i>
+                        <span>Lista</span>
+                    </a>
+                    <a href="lista.html#search" class="nav-link search-nav-link">
+                        <i class="fas fa-search"></i>
+                        <span>Buscar</span>
+                    </a>
+                    <a href="episodios.html" class="nav-link ">
+                        <i class="fas fa-heart"></i>
+                        <span>Episódios</span>
+                    </a>
+                    <a href="ranking.html" class="nav-link ">
+                        <i class="fas fa-trophy"></i>
+                        <span>Ranking</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="right-group">
+                <div class="search-container">
+                    <button type="button" class="search-toggle">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <form action="https://AngoTaku.me/lista.php" method="GET" class="search-bar">
+                        <input type="hidden" name="genre" value="">
+                        <input type="hidden" name="year" value="">
+                        <input type="hidden" name="dubbed" value="">
+                        <input type="text" name="search" placeholder="Buscar animes..." required>
+                    </form>
+                </div>
+
+                <div class="user-section">
+                                            <a href="login.html" class="login-button">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Entrar</span>
+                        </a>
+                                    </div>
+            </div>
+        </div>
+    </header>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchToggle = document.querySelector('.search-toggle');
+            const searchBar = document.querySelector('.search-bar');
+            const searchInput = searchBar.querySelector('input[name="search"]');
+
+            // Função para abrir/fechar a busca
+            searchToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                searchBar.classList.toggle('active');
+                if (searchBar.classList.contains('active')) {
+                    searchInput.focus();
+                }
+            });
+
+            // Fechar a busca quando clicar fora
+            document.addEventListener('click', function(e) {
+                if (!searchBar.contains(e.target) && !searchToggle.contains(e.target)) {
+                    searchBar.classList.remove('active');
+                }
+            });
+
+            // Evitar que a busca feche quando clicar dentro dela
+            searchBar.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+<script>
+(function() {
+    const notifyKey = 'tg_notify_last';
+    const notifyDiv = document.getElementById('telegram-notify');
+    const closeBtn = document.getElementById('close-tg-notify');
+    function shouldShow() {
+        try {
+            const last = localStorage.getItem(notifyKey);
+            if (!last) return true;
+            const lastDate = new Date(parseInt(last, 10));
+            const now = new Date();
+            // 7 dias = 604800000 ms
+            return (now - lastDate) > 604800000;
+        } catch(e) { return true; }
+    }
+    function hideNotify() {
+        notifyDiv.style.display = 'none';
+        try { localStorage.setItem(notifyKey, Date.now().toString()); } catch(e){}
+    }
+    if (shouldShow()) {
+        notifyDiv.style.display = 'block';
+        closeBtn.onclick = hideNotify;
+    }
+})();
+</script>
+</body>
+
+<!-- Mirrored from AngoTaku.me/lista.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Aug 2025 21:01:47 GMT -->
+</html>
+
+<link rel="stylesheet" href="css/lista.css">
+
+<div class="lista-container">
+    <section class="filters-section">
+        <h2 class="filters-title">Filtros</h2>
+        <form action="#" method="GET" id="filterForm">
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label for="genre">Gênero</label>
+                    <select name="genre" id="genre">
+                        <option value="">Todos os Gêneros</option>
+                                                <option value="+18"
+                                >
+                            +18                        </option>
+                                                <option value="Artes Marciais"
+                                >
+                            Artes Marciais                        </option>
+                                                <option value="Aventura"
+                                >
+                            Aventura                        </option>
+                                                <option value="Ação"
+                                >
+                            Ação                        </option>
+                                                <option value="China"
+                                >
+                            China                        </option>
+                                                <option value="Comédia"
+                                >
+                            Comédia                        </option>
+                                                <option value="Crime"
+                                >
+                            Crime                        </option>
+                                                <option value="Demônios"
+                                >
+                            Demônios                        </option>
+                                                <option value="Drama"
+                                >
+                            Drama                        </option>
+                                                <option value="Ecchi"
+                                >
+                            Ecchi                        </option>
+                                                <option value="Escolar"
+                                >
+                            Escolar                        </option>
+                                                <option value="Esporte"
+                                >
+                            Esporte                        </option>
+                                                <option value="Família"
+                                >
+                            Família                        </option>
+                                                <option value="Fantasia"
+                                >
+                            Fantasia                        </option>
+                                                <option value="Ficção científica"
+                                >
+                            Ficção científica                        </option>
+                                                <option value="Gore"
+                                >
+                            Gore                        </option>
+                                                <option value="Guerra"
+                                >
+                            Guerra                        </option>
+                                                <option value="Harém"
+                                >
+                            Harém                        </option>
+                                                <option value="Histórico"
+                                >
+                            Histórico                        </option>
+                                                <option value="Horror"
+                                >
+                            Horror                        </option>
+                                                <option value="Isekai"
+                                >
+                            Isekai                        </option>
+                                                <option value="Jogo"
+                                >
+                            Jogo                        </option>
+                                                <option value="Kids"
+                                >
+                            Kids                        </option>
+                                                <option value="Light Novel"
+                                >
+                            Light Novel                        </option>
+                                                <option value="Magia"
+                                >
+                            Magia                        </option>
+                                                <option value="Mecha"
+                                >
+                            Mecha                        </option>
+                                                <option value="Militar"
+                                >
+                            Militar                        </option>
+                                                <option value="Mistério"
+                                >
+                            Mistério                        </option>
+                                                <option value="Mitologia"
+                                >
+                            Mitologia                        </option>
+                                                <option value="Musical"
+                                >
+                            Musical                        </option>
+                                                <option value="Paródia"
+                                >
+                            Paródia                        </option>
+                                                <option value="Policial"
+                                >
+                            Policial                        </option>
+                                                <option value="Psicológico"
+                                >
+                            Psicológico                        </option>
+                                                <option value="Romance"
+                                >
+                            Romance                        </option>
+                                                <option value="Samurai"
+                                >
+                            Samurai                        </option>
+                                                <option value="Sci-Fi"
+                                >
+                            Sci-Fi                        </option>
+                                                <option value="Seinen"
+                                >
+                            Seinen                        </option>
+                                                <option value="Sem Censura"
+                                >
+                            Sem Censura                        </option>
+                                                <option value="Shoujo"
+                                >
+                            Shoujo                        </option>
+                                                <option value="Shounen"
+                                >
+                            Shounen                        </option>
+                                                <option value="Slice Of Life"
+                                >
+                            Slice Of Life                        </option>
+                                                <option value="Sobrenatural"
+                                >
+                            Sobrenatural                        </option>
+                                                <option value="Super Poderes"
+                                >
+                            Super Poderes                        </option>
+                                                <option value="Suspense"
+                                >
+                            Suspense                        </option>
+                                                <option value="Terror"
+                                >
+                            Terror                        </option>
+                                                <option value="Vampiro"
+                                >
+                            Vampiro                        </option>
+                                                <option value="Vida Escolar"
+                                >
+                            Vida Escolar                        </option>
+                                                <option value="War"
+                                >
+                            War                        </option>
+                                                <option value="Yaoi"
+                                >
+                            Yaoi                        </option>
+                                                <option value="Yuri"
+                                >
+                            Yuri                        </option>
+                                            </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="year">Ano</label>
+                    <select name="year" id="year">
+                        <option value="">Todos os Anos</option>
+                                                <option value="2025"
+                                >
+                            2025                        </option>
+                                                <option value="2024"
+                                >
+                            2024                        </option>
+                                                <option value="2023"
+                                >
+                            2023                        </option>
+                                                <option value="2022"
+                                >
+                            2022                        </option>
+                                                <option value="2021"
+                                >
+                            2021                        </option>
+                                                <option value="2020"
+                                >
+                            2020                        </option>
+                                                <option value="2019"
+                                >
+                            2019                        </option>
+                                                <option value="2018"
+                                >
+                            2018                        </option>
+                                                <option value="2017"
+                                >
+                            2017                        </option>
+                                                <option value="2016"
+                                >
+                            2016                        </option>
+                                                <option value="2015"
+                                >
+                            2015                        </option>
+                                                <option value="2014"
+                                >
+                            2014                        </option>
+                                                <option value="2013"
+                                >
+                            2013                        </option>
+                                                <option value="2012"
+                                >
+                            2012                        </option>
+                                                <option value="2011"
+                                >
+                            2011                        </option>
+                                                <option value="2010"
+                                >
+                            2010                        </option>
+                                                <option value="2009"
+                                >
+                            2009                        </option>
+                                                <option value="2008"
+                                >
+                            2008                        </option>
+                                                <option value="2007"
+                                >
+                            2007                        </option>
+                                                <option value="2006"
+                                >
+                            2006                        </option>
+                                                <option value="2005"
+                                >
+                            2005                        </option>
+                                                <option value="2004"
+                                >
+                            2004                        </option>
+                                                <option value="2003"
+                                >
+                            2003                        </option>
+                                                <option value="2002"
+                                >
+                            2002                        </option>
+                                                <option value="2001"
+                                >
+                            2001                        </option>
+                                                <option value="2000"
+                                >
+                            2000                        </option>
+                                                <option value="1999"
+                                >
+                            1999                        </option>
+                                                <option value="1998"
+                                >
+                            1998                        </option>
+                                                <option value="1997"
+                                >
+                            1997                        </option>
+                                                <option value="1996"
+                                >
+                            1996                        </option>
+                                                <option value="1995"
+                                >
+                            1995                        </option>
+                                                <option value="1994"
+                                >
+                            1994                        </option>
+                                                <option value="1993"
+                                >
+                            1993                        </option>
+                                                <option value="1992"
+                                >
+                            1992                        </option>
+                                                <option value="1991"
+                                >
+                            1991                        </option>
+                                                <option value="1989"
+                                >
+                            1989                        </option>
+                                                <option value="1986"
+                                >
+                            1986                        </option>
+                                            </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="dubbed">Áudio</label>
+                    <select name="dubbed" id="dubbed">
+                        <option value="">Todos</option>
+                        <option value="yes" >Dublado</option>
+                        <option value="no" >Legendado</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="search">Buscar</label>
+                    <input type="text" name="search" id="search" 
+                           value="" 
+                           placeholder="Digite o nome do anime...">
+                </div>
+            </div>
+
+            <div class="filter-buttons">
+                <button type="submit" class="filter-button apply-filters">Aplicar Filtros</button>
+                <button type="button" class="filter-button clear-filters" onclick="window.location.href='lista.html'">
+                    Limpar Filtros
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <div class="anime-grid">
+                                <a href="anime9494.html?title=%23Compass+2.0%3A+Sentou+Setsuri+Kaiseki+System" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2025/04/Compass-2.0-Sentou-Setsuri-Kaiseki-System-Todos-os-Episodios-Online-Goyabu.webp" 
+                         alt="#Compass 2.0: Sentou Setsuri Kaiseki System"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">#Compass 2.0: Sentou Setsuri Kaiseki System</h3>
+                    <div class="anime-meta">
+                                                <span>2025</span>
+                                                
+                                                <span>Ação,Jogo</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="anime7626.html?title=.hack%2F%2FSign" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/05/hack-sign-todos-os-episodios-online-goyabu.jpg" 
+                         alt=".hack//Sign"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">.hack//Sign</h3>
+                    <div class="anime-meta">
+                                                <span>2002</span>
+                                                
+                                                <span>Aventura,Fantasia,Ficção científica,Jogo,Magia,Mistério,Shounen</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="anime9ad7.html?title=0-saiji+Start+Dash+Monogatari" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2024/07/0-saiji-Start-Dash-Monogatari-Todos-os-Episodios-Online-Goyabu.jpg" 
+                         alt="0-saiji Start Dash Monogatari"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">0-saiji Start Dash Monogatari</h3>
+                    <div class="anime-meta">
+                                                <span>2024</span>
+                                                
+                                                <span>Aventura,Fantasia,Isekai</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="anime6cce.html?title=009-1" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/05/009-1-todos-os-episodios-goyabu.jpg" 
+                         alt="009-1"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">009-1</h3>
+                    <div class="anime-meta">
+                                                <span>2006</span>
+                                                
+                                                <span>Ação,Aventura,Ficção científica,Mecha,Seinen</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="anime5438.html?title=07+Ghost" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/05/07-ghost-todos-os-episodios-online-goyabu.jpg" 
+                         alt="07 Ghost"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">07 Ghost</h3>
+                    <div class="anime-meta">
+                                                <span>2009</span>
+                                                
+                                                <span>Ação,Demônios,Fantasia,Magia,Militar,Policial,Shoujo,Sobrenatural</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="anime006b.html?title=100-man+no+Inochi+no+Ue+ni+Ore+wa+Tatte+Iru" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/100-man-no-Inochi-no-Ue-ni-Ore-wa-Tatte-Iru-Todos-os-Episodios-min.jpg" 
+                         alt="100-man no Inochi no Ue ni Ore wa Tatte Iru"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">100-man no Inochi no Ue ni Ore wa Tatte Iru</h3>
+                    <div class="anime-meta">
+                                                <span>2020</span>
+                                                
+                                                <span>Ação,Drama,Fantasia,Shounen</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="anime8f88.html?title=100-man+no+Inochi+no+Ue+ni+Ore+wa+Tatte+Iru+2" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/100-man-no-Inochi-no-Ue-ni-Ore-wa-Tatte-Iru-2-Todos-os-Episodios-min.jpg" 
+                         alt="100-man no Inochi no Ue ni Ore wa Tatte Iru 2"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">100-man no Inochi no Ue ni Ore wa Tatte Iru 2</h3>
+                    <div class="anime-meta">
+                                                <span>2021</span>
+                                                
+                                                <span>Ação,Drama,Fantasia,Shounen</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="anime5654.html?title=100-man+no+Inochi+no+Ue+ni+Ore+wa+Tatte+Iru+2+Dublado" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/07/100-man-no-Inochi-no-Ue-ni-Ore-wa-Tatte-Iru-2-Dublado.jpg" 
+                         alt="100-man no Inochi no Ue ni Ore wa Tatte Iru 2 Dublado"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">100-man no Inochi no Ue ni Ore wa Tatte Iru 2 Dublado</h3>
+                    <div class="anime-meta">
+                                                <span>2021</span>
+                                                
+                                                <span>Ação,Drama,Fantasia,Shounen</span>
+                                                
+                                                <span class="audio-type">Dublado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="animea146.html?title=100-man+no+Inochi+no+Ue+ni+Ore+wa+Tatte+Iru+Dublado" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/07/100-man-no-Inochi-no-Ue-ni-Ore-wa-Tatte-Iru-Dublado.jpg" 
+                         alt="100-man no Inochi no Ue ni Ore wa Tatte Iru Dublado"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">100-man no Inochi no Ue ni Ore wa Tatte Iru Dublado</h3>
+                    <div class="anime-meta">
+                                                <span>2020</span>
+                                                
+                                                <span>Ação,Drama,Fantasia,Shounen</span>
+                                                
+                                                <span class="audio-type">Dublado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="animef9d9.html?title=11eyes" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/05/11eyes-todos-os-episodios-online-goyabu.jpg" 
+                         alt="11eyes"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">11eyes</h3>
+                    <div class="anime-meta">
+                                                <span>2009</span>
+                                                
+                                                <span>Ação,Aventura,Ecchi,Fantasia,Ficção científica,Sobrenatural,Super Poderes</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="animee58a.html?title=12-Sai.+Chicchana+Mune+no+Tokimeki" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/12-sai-chicchana-mune-no-tokimeki-todos-os-episodios-goyabu.jpg" 
+                         alt="12-Sai. Chicchana Mune no Tokimeki"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">12-Sai. Chicchana Mune no Tokimeki</h3>
+                    <div class="anime-meta">
+                                                <span>2016</span>
+                                                
+                                                <span>Drama,Escolar,Romance,Shoujo</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="animeb200.html?title=12-Sai.+Chicchana+Mune+no+Tokimeki+2" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/12-sai-chicchana-mune-no-tokimeki-2-todos-os-episodios-goyabu.jpg" 
+                         alt="12-Sai. Chicchana Mune no Tokimeki 2"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">12-Sai. Chicchana Mune no Tokimeki 2</h3>
+                    <div class="anime-meta">
+                                                <span>2016</span>
+                                                
+                                                <span>Drama,Escolar,Romance,Shoujo</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="anime1874.html?title=16bit+Sensation%3A+Another+Layer" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/10/16bit-Sensation-Another-Layer-Todos-os-Episodios-Online-Goyabu.jpg" 
+                         alt="16bit Sensation: Another Layer"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">16bit Sensation: Another Layer</h3>
+                    <div class="anime-meta">
+                                                <span>2023</span>
+                                                
+                                                <span>Comédia</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="anime68e6.html?title=18if" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/18if-todos-os-episodios-online-goyabu.jpg" 
+                         alt="18if"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">18if</h3>
+                    <div class="anime-meta">
+                                                <span>2017</span>
+                                                
+                                                <span>Mistério,Sobrenatural</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="anime40da.html?title=2.5-jigen+no+Ririsa" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2024/07/2.5-jigen-no-Ririsa-Todos-os-Episodios-Online-Goyabu.jpg" 
+                         alt="2.5-jigen no Ririsa"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">2.5-jigen no Ririsa</h3>
+                    <div class="anime-meta">
+                                                <span>2024</span>
+                                                
+                                                <span>Comédia,Ecchi,Escolar,Harém,Shounen</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="anime4e8a.html?title=2.5-jigen+no+Ririsa+Dublado" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2024/07/2.5-jigen-no-Ririsa-Dublado-Todos-os-Episodios-Online-Goyabu.jpg" 
+                         alt="2.5-jigen no Ririsa Dublado"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">2.5-jigen no Ririsa Dublado</h3>
+                    <div class="anime-meta">
+                                                <span>2024</span>
+                                                
+                                                <span>Comédia,Ecchi,Escolar,Harém,Shounen</span>
+                                                
+                                                <span class="audio-type">Dublado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="anime5dc0.html?title=22%2F7" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/22-7todos-os-episodios-goyabu.jpg" 
+                         alt="22/7"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">22/7</h3>
+                    <div class="anime-meta">
+                                                <span>2020</span>
+                                                
+                                                <span>Musical</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="anime8626.html?title=25-sai+no+Joshikousei" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/25-sai-no-Joshikousei-goyabu.to_.jpg" 
+                         alt="25-sai no Joshikousei"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">25-sai no Joshikousei</h3>
+                    <div class="anime-meta">
+                                                <span>2018</span>
+                                                
+                                                <span>+18,Ecchi,Escolar,Romance</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="anime9259.html?title=3+Byou+Go+Yajuu+Goukon+de+Sumi+ni+Ita+Kare+wa+Midara+na+Nikushoku+Deshita" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/3-Byou-Go-Yajuu-Goukon-de-Sumi-ni-Ita-Kare-wa-Midara-na-Nikushoku-Deshita-Todos-os-Episodios-Online-Goyabu.jpg" 
+                         alt="3 Byou Go Yajuu Goukon de Sumi ni Ita Kare wa Midara na Nikushoku Deshita"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">3 Byou Go Yajuu Goukon de Sumi ni Ita Kare wa Midara na Nikushoku Deshita</h3>
+                    <div class="anime-meta">
+                                                <span>2022</span>
+                                                
+                                                <span>+18,Ecchi,Romance</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="animeb74b.html?title=30-sai+made+Doutei+dato+Mahoutsukai+ni+Nareru+Rashii" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2024/01/30-sai-made-Doutei-dato-Mahoutsukai-ni-Nareru-Rashii-Todos-os-Episodios-Online-Goyabu.jpg" 
+                         alt="30-sai made Doutei dato Mahoutsukai ni Nareru Rashii"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">30-sai made Doutei dato Mahoutsukai ni Nareru Rashii</h3>
+                    <div class="anime-meta">
+                                                <span>2024</span>
+                                                
+                                                <span>Comédia,Sobrenatural,Yaoi</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="anime3a3e.html?title=30-sai+no+Hoken+Taiiku" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/05/30-sai-no-hoken-taiiku-todos-os-episodios-goyabu.jpg" 
+                         alt="30-sai no Hoken Taiiku"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">30-sai no Hoken Taiiku</h3>
+                    <div class="anime-meta">
+                                                <span>2011</span>
+                                                
+                                                <span>Ecchi,Romance,Seinen</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="anime84c1.html?title=3D+Kanojo+%28Real+Girl%29" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/3D-Kanojo-Real-Girl-goyabu.to_.jpg" 
+                         alt="3D Kanojo (Real Girl)"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">3D Kanojo (Real Girl)</h3>
+                    <div class="anime-meta">
+                                                <span>2018</span>
+                                                
+                                                <span>Escolar,Romance</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="animea0bf.html?title=3D+Kanojo+%28Real+Girl%29+2+Temporada" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/3D-Kanojo-Real-Girl-2-Temporada-goyabu.to_.jpg" 
+                         alt="3D Kanojo (Real Girl) 2 Temporada"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">3D Kanojo (Real Girl) 2 Temporada</h3>
+                    <div class="anime-meta">
+                                                <span>2018</span>
+                                                
+                                                <span>Escolar,Romance,Shoujo</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="animeba45.html?title=4+Cut+Hero" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/08/4-Cut-Hero-Todos-os-Episodios-Online-Goyabu.jpg" 
+                         alt="4 Cut Hero"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">4 Cut Hero</h3>
+                    <div class="anime-meta">
+                                                <span>2023</span>
+                                                
+                                                <span>Ação,Aventura,Comédia,Fantasia,Harém,Paródia,Romance</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="animedda7.html?title=5-toubun+no+Hanayome%E2%88%BD" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/09/5-toubun-no-Hanayome-Todos-os-Episodios-Online-Goyabu.jpg" 
+                         alt="5-toubun no Hanayome∽"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">5-toubun no Hanayome∽</h3>
+                    <div class="anime-meta">
+                                                <span>2023</span>
+                                                
+                                                <span>Comédia,Escolar,Harém</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="anime8a5a.html?title=7+Seeds+2+Dublado" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/7-Seeds-2-Dublado-Todos-os-Episodios-Online-Goyabu.jpg" 
+                         alt="7 Seeds 2 Dublado"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">7 Seeds 2 Dublado</h3>
+                    <div class="anime-meta">
+                                                <span>2020</span>
+                                                
+                                                <span>Aventura,Drama,Ficção científica,Romance,Shoujo</span>
+                                                
+                                                <span class="audio-type">Dublado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="https://AngoTaku.me/anime.php?title=7+Seeds+Dublado" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/7-Seeds-Todos-os-Episodios-Online-Goyabu.jpg" 
+                         alt="7 Seeds Dublado"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">7 Seeds Dublado</h3>
+                    <div class="anime-meta">
+                                                <span>2019</span>
+                                                
+                                                <span>Aventura,Drama,Ficção científica,Romance,Shoujo</span>
+                                                
+                                                <span class="audio-type">Dublado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="https://AngoTaku.me/anime.php?title=86" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/86-goyabu.to_.jpg" 
+                         alt="86"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">86</h3>
+                    <div class="anime-meta">
+                                                <span>2021</span>
+                                                
+                                                <span>Ação,Drama,Ficção científica,Mecha,Militar</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="https://AngoTaku.me/anime.php?title=91+Days" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/91-days-todos-os-episodios-goyabu.jpg" 
+                         alt="91 Days"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">91 Days</h3>
+                    <div class="anime-meta">
+                                                <span>2016</span>
+                                                
+                                                <span>Ação,Crime,Drama,Histórico,Mistério</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="https://AngoTaku.me/anime.php?title=A+Channel" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/05/a-channel-todos-os-episodios-goyabu.jpg" 
+                         alt="A Channel"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">A Channel</h3>
+                    <div class="anime-meta">
+                                                <span>2011</span>
+                                                
+                                                <span>Comédia,Escolar,Seinen</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="https://AngoTaku.me/anime.php?title=A+Will+Eternal" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/A-Will-Eternal-min.jpg" 
+                         alt="A Will Eternal"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">A Will Eternal</h3>
+                    <div class="anime-meta">
+                                                <span>2020</span>
+                                                
+                                                <span>Ação,Artes Marciais,Comédia,Fantasia,Histórico</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="https://AngoTaku.me/anime.php?title=A-Rank+Party+wo+Ridatsu+shita+Ore+wa%2C+Moto+Oshiego-tachi+to+Meikyuu+Shinbu+wo+Mezasu" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2025/01/A-Rank-Party-wo-Ridatsu-shita-Ore-wa-Moto-Oshiego-tachi-to-Meikyuu-Shinbu-wo-Mezasu-Todos-os-Episodios-Online-Goyabu.jpg" 
+                         alt="A-Rank Party wo Ridatsu shita Ore wa, Moto Oshiego-tachi to Meikyuu Shinbu wo Mezasu"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">A-Rank Party wo Ridatsu shita Ore wa, Moto Oshiego-tachi to Meikyuu Shinbu wo Mezasu</h3>
+                    <div class="anime-meta">
+                                                <span>2025</span>
+                                                
+                                                <span>Ação,Aventura,Fantasia</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="https://AngoTaku.me/anime.php?title=A.I.C.O.+Incarnation" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/05/a-i-c-o-incarnation-todos-os-episodios-goyabu.jpg" 
+                         alt="A.I.C.O. Incarnation"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">A.I.C.O. Incarnation</h3>
+                    <div class="anime-meta">
+                                                <span>2018</span>
+                                                
+                                                <span>Ação,Aventura,Fantasia,Ficção científica</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="https://AngoTaku.me/anime.php?title=A.I.C.O.+Incarnation+Dublado" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/07/A.I.C.O.-Incarnation-Dublado.jpg" 
+                         alt="A.I.C.O. Incarnation Dublado"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">A.I.C.O. Incarnation Dublado</h3>
+                    <div class="anime-meta">
+                                                <span>2018</span>
+                                                
+                                                <span>Ação,Aventura,Fantasia,Ficção científica</span>
+                                                
+                                                <span class="audio-type">Dublado</span>
+                    </div>
+                </div>
+            </a>
+                        <a href="https://AngoTaku.me/anime.php?title=A3%21+Season+Spring" class="anime-card">
+                <div class="anime-cover">
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/a3-season-spring-summer-todos-os-episodios-goyabu.jpg" 
+                         alt="A3! Season Spring"
+                         loading="lazy">
+                </div>
+                <div class="anime-info">
+                    <h3 class="anime-title">A3! Season Spring</h3>
+                    <div class="anime-meta">
+                                                <span>2020</span>
+                                                
+                                                <span>Jogo,Musical</span>
+                                                
+                                                <span class="audio-type">Legendado</span>
+                    </div>
+                </div>
+            </a>
+                        
+            <!-- Paginação -->
+            <div class="pagination-wrapper">
+                <div class="pagination">
+                                                                    
+                        <div class="pagination-container">
+                            
+                            
+                                                            <a href="https://AngoTaku.me/lista.php?&amp;page=1" 
+                                   class="page-link active">
+                                    1                                </a>
+                                                            <a href="https://AngoTaku.me/lista.php?&amp;page=2" 
+                                   class="page-link ">
+                                    2                                </a>
+                                                            <a href="https://AngoTaku.me/lista.php?&amp;page=3" 
+                                   class="page-link ">
+                                    3                                </a>
+                            
+                                                                                                <span class="page-dots">...</span>
+                                                                <a href="https://AngoTaku.me/lista.php?&amp;page=76" class="page-link">76</a>
+                            
+                                                            <a href="https://AngoTaku.me/lista.php?&amp;page=2" class="page-link prev-next">&raquo;</a>
+                                                    </div>
+                                    </div>
+            </div>
+            </div>
+</div>
+
+<style>
+.pagination-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem 0;
+    grid-column: 1 / -1;
+}
+
+.pagination {
+    background: rgba(26, 26, 26, 0.9);
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pagination-container {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding: 0 0.8rem;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.page-link:hover {
+    background: rgba(138, 43, 226, 0.2);
+}
+
+.page-link.active {
+    background: #8A2BE2;
+    color: #fff;
+    cursor: default;
+}
+
+.prev-next {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.page-dots {
+    color: #fff;
+    padding: 0 0.3rem;
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .pagination {
+        padding: 0.8rem 1rem;
+    }
+
+    .page-link {
+        min-width: 2rem;
+        height: 2rem;
+        padding: 0 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+</style>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Sobre AngoTaku</h3>
+            <p>O melhor site para assistir animes online gratuitamente, com uma grande variedade de títulos legendados e dublados.</p>
+            <div class="social-links">
+                <a href="" target="_blank" title="Telegram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Links Úteis</h3>
+            <ul>
+                <li><a href="https://AngoTaku.me/dmca.php">DMCA</a></li>
+                <li><a href="https://AngoTaku.me/termos.php">Termos de Uso</a></li>
+                <li><a href="https://AngoTaku.me/privacidade.php">Política de Privacidade</a></li>
+                <li><a href="https://AngoTaku.me/contato.php">Contato</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Categorias</h3>
+            <ul>
+                <li><a href="https://AngoTaku.me/categoria/acao">Ação</a></li>
+                <li><a href="https://AngoTaku.me/categoria/aventura">Aventura</a></li>
+                <li><a href="https://AngoTaku.me/categoria/comedia">Comédia</a></li>
+                <li><a href="https://AngoTaku.me/categoria/romance">Romance</a></li>
+            </ul>
+        </div>
+        
+    
+    <div class="footer-bottom">
+        <p>&copy; 2025 AngoTaku. Todos os direitos reservados.</p>
+        <p>Este site não armazena nenhum dos arquivos em seu servidor. Todo o conteúdo é fornecido por terceiros.</p>
+    </div>
+</footer>
+
+<style>
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.footer-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.footer-section p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-links a {
+    color: var(--text-secondary);
+    transition: color var(--transition-speed);
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-section ul a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+.footer-section ul a:hover {
+    color: var(--text-primary);
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.newsletter-form button {
+    padding: 0.8rem 1.5rem;
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.newsletter-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        padding: 2rem 1rem;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .newsletter-form button {
+        width: 100%;
+    }
+}
+</style>
+</body>
+</html>

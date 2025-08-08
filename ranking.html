@@ -1,0 +1,1146 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<!-- Mirrored from AngoTaku.me/ranking.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Aug 2025 21:03:20 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking - AngoTaku</title>
+    <link rel="stylesheet" href="https://AngoTaku.me/css/ranking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .ranking-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .ranking-section {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .ranking-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .ranking-title {
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            color: var(--text-color);
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .ranking-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .ranking-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ranking-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .ranking-position {
+            width: 35px;
+            height: 35px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .ranking-thumb {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            margin-right: 15px;
+            object-fit: cover;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .ranking-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .ranking-name {
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 5px;
+            font-size: 1.1em;
+        }
+
+        .ranking-name a {
+            color: inherit;
+            text-decoration: none;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: color 0.3s ease;
+        }
+
+        .ranking-name a:hover {
+            color: var(--primary-color);
+        }
+
+        .ranking-views {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .ranking-views::before {
+            content: '👁';
+            font-size: 1.1em;
+        }
+
+        /* Top 3 Styling */
+        .ranking-item:nth-child(1) .ranking-position {
+            background: linear-gradient(45deg, #ffd700, #ffa500);
+            font-size: 1.2em;
+        }
+
+        .ranking-item:nth-child(2) .ranking-position {
+            background: linear-gradient(45deg, #c0c0c0, #a0a0a0);
+        }
+
+        .ranking-item:nth-child(3) .ranking-position {
+            background: linear-gradient(45deg, #cd7f32, #a05a2c);
+        }
+
+        @media (max-width: 768px) {
+            .ranking-container {
+                grid-template-columns: 1fr;
+                padding: 15px;
+                gap: 20px;
+            }
+
+            .ranking-section {
+                padding: 20px;
+            }
+
+            .ranking-title {
+                font-size: 1.5em;
+                margin-bottom: 20px;
+            }
+
+            .ranking-item {
+                padding: 12px;
+            }
+
+            .ranking-thumb {
+                width: 50px;
+                height: 50px;
+            }
+
+            .ranking-name {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ranking-container {
+                padding: 10px;
+            }
+
+            .ranking-thumb {
+                width: 40px;
+                height: 40px;
+            }
+
+            .ranking-position {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9em;
+            }
+
+            .ranking-views {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking - AngoTaku</title>
+    <link rel="icon" type="image/png" href="https://AngoTaku.me/includes/favicon.png">
+    <link rel="stylesheet" href="https://AngoTaku.me/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+        /* Reset e variáveis */
+        :root {
+            --primary: #8A2BE2;
+            --primary-light: #9B4BFF;
+            --accent: #FF3E6C;
+            --text: #FFFFFF;
+            --text-secondary: rgba(255, 255, 255, 0.85);
+            --background: rgba(16, 16, 24, 0.95);
+            --nav-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilos base do header */
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: var(--nav-height);
+            padding: 0 2rem;
+            background: var(--background);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Efeito de borda gradiente animada */
+        .nav-container::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(
+                90deg,
+                var(--primary) 0%,
+                var(--accent) 50%,
+                var(--primary) 100%
+            );
+            background-size: 200% 100%;
+            animation: gradientBorder 3s linear infinite;
+        }
+
+        @keyframes gradientBorder {
+            0% { background-position: 100% 0; }
+            100% { background-position: -100% 0; }
+        }
+
+        /* Grupos de navegação */
+        .left-group, .right-group {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        /* Responsividade dos links de navegação */
+        .nav-links {
+            display: flex;
+            gap: 1.1rem;
+            flex-wrap: wrap;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            max-width: 100vw;
+        }
+        .nav-links::-webkit-scrollbar {
+            display: none;
+        }
+        @media (max-width: 900px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+                height: auto;
+                padding: 0 0.5rem;
+            }
+            .left-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .nav-links {
+                width: 100%;
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 6px;
+                margin-bottom: 2px;
+            }
+            .right-group {
+                flex-direction: row;
+                width: 100%;
+                justify-content: flex-end;
+                margin-top: 8px;
+                gap: 1rem;
+            }
+        }
+        @media (max-width: 600px) {
+            :root {
+                --nav-height: 48px;
+            }
+            .nav-container {
+                flex-direction: column;
+                align-items: stretch;
+                height: auto;
+                padding: 0 0.1rem;
+            }
+            .left-group {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.22rem;
+            }
+            .nav-links {
+                width: 100vw;
+                gap: 0.45rem;
+                font-size: 0.89rem;
+                padding-bottom: 3px;
+            }
+            .right-group {
+                flex-direction: row;
+                width: 100%;
+                justify-content: flex-end;
+                margin-top: 4px;
+                gap: 0.5rem;
+            }
+            .search-toggle {
+                width: 32px;
+                height: 32px;
+                font-size: 1.05rem;
+                min-width: 32px;
+                min-height: 32px;
+                padding: 0 3px;
+            }
+            .search-bar input[type="text"] {
+                font-size: 0.97rem;
+                padding: 5px 7px;
+            }
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
+        /* Links de navegação */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover {
+            color: var(--text);
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--text);
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.25);
+        }
+
+        .nav-link i {
+            font-size: 1.1rem;
+        }
+
+        /* Perfil do usuário */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .user-profile:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .user-profile .username {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        /* Botão de login */
+        .login-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border: none;
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.25);
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.3);
+            filter: brightness(1.1);
+        }
+
+        /* Busca */
+        .search-container {
+            position: relative;
+        }
+
+        .search-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .search-bar {
+            display: none;
+            position: absolute;
+            top: calc(100% + 1rem);
+            right: 0;
+            background: var(--background);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            width: 300px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            animation: slideDown 0.3s ease;
+        }
+
+        .search-bar.active {
+            display: block;
+        }
+
+        .search-bar input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            font-size: 0.95rem;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .user-profile .username {
+                display: none;
+            }
+
+            .user-profile {
+                padding: 0.4rem;
+            }
+
+            .user-profile .avatar {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: var(--background);
+                padding: 0.8rem;
+                justify-content: space-around;
+                box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-link {
+                flex-direction: column;
+                font-size: 0.8rem;
+                padding: 0.5rem;
+            }
+
+            .nav-link i {
+                font-size: 1.2rem;
+            }
+
+            .nav-link span {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+    <script src="https://AngoTaku.me/assets/js/dev-blocker.js"></script>
+    <script>
+        // Desabilita tecla F12
+        document.onkeypress = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                return false;
+            }
+        }
+        // Desabilita clique direito
+        document.onmousedown = function (event) {
+            event = (event || window.event);
+            if (event.button == 2) {
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="telegram-notify" style="display:none;position:relative;">
+      <div style="background:linear-gradient(90deg,#9b59b6,#6c3483);color:#fff;padding:12px 18px 12px 40px;font-size:1rem;display:flex;align-items:center;justify-content:center;gap:18px;box-shadow:0 2px 18px #0003;z-index:2000;position:relative;">
+        <i class="fab fa-telegram-plane" style="font-size:1.5em;"></i>
+        <span>Entre em nosso canal no <b>Telegram</b> para novidades e avisos! <a href="" target="_blank" style="color:#fff;text-decoration:underline;font-weight:bold;">@AngoTakuanimes</a></span>
+        <button id="close-tg-notify" style="background:none;border:none;color:#fff;font-size:1.4em;margin-left:18px;cursor:pointer;">&times;</button>
+      </div>
+    </div>
+    <header>
+        <div class="nav-container">
+            <div class="left-group">
+                <a href="https://AngoTaku.me/" class="logo">
+                    <span>AngoTaku</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="https://AngoTaku.me/" class="nav-link ">
+                        <i class="fas fa-home"></i>
+                        <span>Início</span>
+                    </a>
+                    <a href="https://AngoTaku.me/lista.php" class="nav-link ">
+                        <i class="fas fa-list"></i>
+                        <span>Lista</span>
+                    </a>
+                    <a href="https://AngoTaku.me/lista.php#search" class="nav-link search-nav-link">
+                        <i class="fas fa-search"></i>
+                        <span>Buscar</span>
+                    </a>
+                    <a href="https://AngoTaku.me/episodios.php" class="nav-link ">
+                        <i class="fas fa-heart"></i>
+                        <span>Episódios</span>
+                    </a>
+                    <a href="https://AngoTaku.me/ranking.php" class="nav-link active">
+                        <i class="fas fa-trophy"></i>
+                        <span>Ranking</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="right-group">
+                <div class="search-container">
+                    <button type="button" class="search-toggle">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <form action="https://AngoTaku.me/lista.php" method="GET" class="search-bar">
+                        <input type="hidden" name="genre" value="">
+                        <input type="hidden" name="year" value="">
+                        <input type="hidden" name="dubbed" value="">
+                        <input type="text" name="search" placeholder="Buscar animes..." required>
+                    </form>
+                </div>
+
+                <div class="user-section">
+                                            <a href="https://AngoTaku.me/login.php" class="login-button">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Entrar</span>
+                        </a>
+                                    </div>
+            </div>
+        </div>
+    </header>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchToggle = document.querySelector('.search-toggle');
+            const searchBar = document.querySelector('.search-bar');
+            const searchInput = searchBar.querySelector('input[name="search"]');
+
+            // Função para abrir/fechar a busca
+            searchToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                searchBar.classList.toggle('active');
+                if (searchBar.classList.contains('active')) {
+                    searchInput.focus();
+                }
+            });
+
+            // Fechar a busca quando clicar fora
+            document.addEventListener('click', function(e) {
+                if (!searchBar.contains(e.target) && !searchToggle.contains(e.target)) {
+                    searchBar.classList.remove('active');
+                }
+            });
+
+            // Evitar que a busca feche quando clicar dentro dela
+            searchBar.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+<script>
+(function() {
+    const notifyKey = 'tg_notify_last';
+    const notifyDiv = document.getElementById('telegram-notify');
+    const closeBtn = document.getElementById('close-tg-notify');
+    function shouldShow() {
+        try {
+            const last = localStorage.getItem(notifyKey);
+            if (!last) return true;
+            const lastDate = new Date(parseInt(last, 10));
+            const now = new Date();
+            // 7 dias = 604800000 ms
+            return (now - lastDate) > 604800000;
+        } catch(e) { return true; }
+    }
+    function hideNotify() {
+        notifyDiv.style.display = 'none';
+        try { localStorage.setItem(notifyKey, Date.now().toString()); } catch(e){}
+    }
+    if (shouldShow()) {
+        notifyDiv.style.display = 'block';
+        closeBtn.onclick = hideNotify;
+    }
+})();
+</script>
+</body>
+
+<!-- Mirrored from AngoTaku.me/ranking.php by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Aug 2025 21:03:20 GMT -->
+</html>
+
+    <div class="ranking-container">
+        <!-- Top 10 Animes -->
+        <div class="ranking-section">
+            <h2 class="ranking-title">Top 10 Animes</h2>
+            <ul class="ranking-list">
+                                <li class="ranking-item">
+                    <div class="ranking-position">1</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2023/08/Boruto-Naruto-Next-Generations-Todos-os-Episodios-Online-Goyabu.jpg" alt="Boruto: Naruto Next Generations" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/anime.php?title=Boruto%3A+Naruto+Next+Generations">
+                                Boruto: Naruto Next Generations                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            211 visualizações
+                        </div>
+                    </div>
+                </li>
+                                <li class="ranking-item">
+                    <div class="ranking-position">2</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2023/08/Naruto-Shippuden-Dublado-Todos-os-Episodios-Online-Goyabu.jpg" alt="Naruto Shippuden Dublado" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/anime.php?title=Naruto+Shippuden+Dublado">
+                                Naruto Shippuden Dublado                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            158 visualizações
+                        </div>
+                    </div>
+                </li>
+                                <li class="ranking-item">
+                    <div class="ranking-position">3</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2023/05/teekyuu-todos-os-episodios-goyabu.jpg" alt="Teekyuu Todas as Temporadas" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/anime.php?title=Teekyuu+Todas+as+Temporadas">
+                                Teekyuu Todas as Temporadas                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            130 visualizações
+                        </div>
+                    </div>
+                </li>
+                                <li class="ranking-item">
+                    <div class="ranking-position">4</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2023/05/yu-gi-oh-vrains-todos-os-episodios-online-goyabu.jpg" alt="Yu-Gi-Oh! VRAINS" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/anime.php?title=Yu-Gi-Oh%21+VRAINS">
+                                Yu-Gi-Oh! VRAINS                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            98 visualizações
+                        </div>
+                    </div>
+                </li>
+                                <li class="ranking-item">
+                    <div class="ranking-position">5</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/Dragon-Ball-Todos-os-Episodios-Online-Goyabu.jpg" alt="Dragon Ball Dublado" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/anime.php?title=Dragon+Ball+Dublado">
+                                Dragon Ball Dublado                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            62 visualizações
+                        </div>
+                    </div>
+                </li>
+                                <li class="ranking-item">
+                    <div class="ranking-position">6</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2023/03/One-Piece-Todos-os-Episodios-Online-Goyabu.jpg" alt="One Piece" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/anime.php?title=One+Piece">
+                                One Piece                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            56 visualizações
+                        </div>
+                    </div>
+                </li>
+                                <li class="ranking-item">
+                    <div class="ranking-position">7</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/Dragon-Quest-Dai-no-Daibouken-Todos-os-Episodios-min.jpg" alt="Dragon Quest: Dai no Daibouken" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/anime.php?title=Dragon+Quest%3A+Dai+no+Daibouken">
+                                Dragon Quest: Dai no Daibouken                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            55 visualizações
+                        </div>
+                    </div>
+                </li>
+                                <li class="ranking-item">
+                    <div class="ranking-position">8</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2023/05/ace-of-diamond-todos-os-episodios-online-goyabu.jpg" alt="Ace of Diamond" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/anime.php?title=Ace+of+Diamond">
+                                Ace of Diamond                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            53 visualizações
+                        </div>
+                    </div>
+                </li>
+                                <li class="ranking-item">
+                    <div class="ranking-position">9</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2023/05/sakura-card-captor-dublado-todos-os-episodios-online-goyabu.jpg" alt="Sakura Card Captor Dublado" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/anime.php?title=Sakura+Card+Captor+Dublado">
+                                Sakura Card Captor Dublado                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            41 visualizações
+                        </div>
+                    </div>
+                </li>
+                                <li class="ranking-item">
+                    <div class="ranking-position">10</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2023/05/fullmetal-alchemist-brotherhood-todos-os-episodios-online-goyabu.jpg" alt="Fullmetal Alchemist: Brotherhood" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/anime.php?title=Fullmetal+Alchemist%3A+Brotherhood">
+                                Fullmetal Alchemist: Brotherhood                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            41 visualizações
+                        </div>
+                    </div>
+                </li>
+                            </ul>
+        </div>
+
+        <!-- Top 10 Episódios -->
+        <div class="ranking-section">
+            <h2 class="ranking-title">Top 10 Episódios</h2>
+            <ul class="ranking-list">
+                                <li class="ranking-item">
+                    <div class="ranking-position">1</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2023/09/Kimi-no-Koto-ga-Daidaidaidaidaisuki-na-100-nin-no-Kanojo-Todos-os-Episodios-Online-Goyabu.jpg" alt="Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/player.php?title=Kimi+no+Koto+ga+Daidaidaidaidaisuki+na+100-nin+no+Kanojo&amp;episode=3">
+                                Kimi no Koto ga Daidaidaidaidaisuki na 100-nin no Kanojo - Episódio 3                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            6 visualizações
+                        </div>
+                    </div>
+                </li>
+                                <li class="ranking-item">
+                    <div class="ranking-position">2</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2023/07/Bungou-Stray-Dogs-Dublado-Todos-os-Episodios-Online-Goyabu.jpg" alt="Bungou Stray Dogs Dublado" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/player.php?title=Bungou+Stray+Dogs+Dublado&amp;episode=8">
+                                Bungou Stray Dogs Dublado - Episódio 8                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            6 visualizações
+                        </div>
+                    </div>
+                </li>
+                                <li class="ranking-item">
+                    <div class="ranking-position">3</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/Shiroi-Suna-no-3Aquatope-goyabu.to_.jpg" alt="Shiroi Suna no Aquatope" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/player.php?title=Shiroi+Suna+no+Aquatope&amp;episode=12">
+                                Shiroi Suna no Aquatope - Episódio 12                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            5 visualizações
+                        </div>
+                    </div>
+                </li>
+                                <li class="ranking-item">
+                    <div class="ranking-position">4</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2023/08/Claymore-Todos-os-Episodios.jpg" alt="Claymore" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/player.php?title=Claymore&amp;episode=18">
+                                Claymore - Episódio 18                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            5 visualizações
+                        </div>
+                    </div>
+                </li>
+                                <li class="ranking-item">
+                    <div class="ranking-position">5</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2024/07/Shikanoko-Nokonoko-Koshitantan-Dublado-Todos-os-Episodios-Online-Goyabu.jpg" alt="Shikanoko Nokonoko Koshitantan Dublado" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/player.php?title=Shikanoko+Nokonoko+Koshitantan+Dublado&amp;episode=4">
+                                Shikanoko Nokonoko Koshitantan Dublado - Episódio 4                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            4 visualizações
+                        </div>
+                    </div>
+                </li>
+                                <li class="ranking-item">
+                    <div class="ranking-position">6</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2023/08/Boruto-Naruto-Next-Generations-Todos-os-Episodios-Online-Goyabu.jpg" alt="Boruto: Naruto Next Generations" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/player.php?title=Boruto%3A+Naruto+Next+Generations&amp;episode=103">
+                                Boruto: Naruto Next Generations - Episódio 103                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            3 visualizações
+                        </div>
+                    </div>
+                </li>
+                                <li class="ranking-item">
+                    <div class="ranking-position">7</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2024/04/Wind-Breaker-Todos-os-Episodios-Online-Goyabu.jpg" alt="Wind Breaker Dublado" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/player.php?title=Wind+Breaker+Dublado&amp;episode=9">
+                                Wind Breaker Dublado - Episódio 9                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            3 visualizações
+                        </div>
+                    </div>
+                </li>
+                                <li class="ranking-item">
+                    <div class="ranking-position">8</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2024/06/Pokemon-Horizons-The-Series-Dublado-Todos-os-Episodios-Online-Goyabu.jpg" alt="Pokémon Horizons: The Series Dublado" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/player.php?title=Pok%C3%A9mon+Horizons%3A+The+Series+Dublado&amp;episode=17">
+                                Pokémon Horizons: The Series Dublado - Episódio 17                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            3 visualizações
+                        </div>
+                    </div>
+                </li>
+                                <li class="ranking-item">
+                    <div class="ranking-position">9</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2023/04/netoge-no-yome-wa-onnanoko-ja-nai-to-omotta-todos-os-episodios-goyabu.jpg" alt="Netoge no Yome wa Onnanoko ja Nai to Omotta?" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/player.php?title=Netoge+no+Yome+wa+Onnanoko+ja+Nai+to+Omotta%3F&amp;episode=12">
+                                Netoge no Yome wa Onnanoko ja Nai to Omotta? - Episódio 12                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            3 visualizações
+                        </div>
+                    </div>
+                </li>
+                                <li class="ranking-item">
+                    <div class="ranking-position">10</div>
+                    <img src="https://goyabu.to/wp-content/uploads/2024/09/Ranma-2024-Todos-os-Episodios-Online-Goyabu.jpg" alt="Ranma ½ (2024)" class="ranking-thumb">
+                    <div class="ranking-info">
+                        <div class="ranking-name">
+                            <a href="https://AngoTaku.me/player.php?title=Ranma+%C2%BD+%282024%29&amp;episode=12">
+                                Ranma ½ (2024) - Episódio 12                            </a>
+                        </div>
+                        <div class="ranking-views">
+                            3 visualizações
+                        </div>
+                    </div>
+                </li>
+                            </ul>
+        </div>
+    </div>
+
+    <footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Sobre AngoTaku</h3>
+            <p>O melhor site para assistir animes online gratuitamente, com uma grande variedade de títulos legendados e dublados.</p>
+            <div class="social-links">
+                <a href="" target="_blank" title="Telegram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Links Úteis</h3>
+            <ul>
+                <li><a href="https://AngoTaku.me/dmca.php">DMCA</a></li>
+                <li><a href="https://AngoTaku.me/termos.php">Termos de Uso</a></li>
+                <li><a href="https://AngoTaku.me/privacidade.php">Política de Privacidade</a></li>
+                <li><a href="https://AngoTaku.me/contato.php">Contato</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h3>Categorias</h3>
+            <ul>
+                <li><a href="https://AngoTaku.me/categoria/acao">Ação</a></li>
+                <li><a href="https://AngoTaku.me/categoria/aventura">Aventura</a></li>
+                <li><a href="https://AngoTaku.me/categoria/comedia">Comédia</a></li>
+                <li><a href="https://AngoTaku.me/categoria/romance">Romance</a></li>
+            </ul>
+        </div>
+        
+    
+    <div class="footer-bottom">
+        <p>&copy; 2025 AngoTaku. Todos os direitos reservados.</p>
+        <p>Este site não armazena nenhum dos arquivos em seu servidor. Todo o conteúdo é fornecido por terceiros.</p>
+    </div>
+</footer>
+
+<style>
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.footer-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.footer-section p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-links a {
+    color: var(--text-secondary);
+    transition: color var(--transition-speed);
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-section ul a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+.footer-section ul a:hover {
+    color: var(--text-primary);
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.newsletter-form button {
+    padding: 0.8rem 1.5rem;
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.newsletter-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        padding: 2rem 1rem;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .newsletter-form button {
+        width: 100%;
+    }
+}
+</style>
+</body>
+</html>
+</body>
+</html>
